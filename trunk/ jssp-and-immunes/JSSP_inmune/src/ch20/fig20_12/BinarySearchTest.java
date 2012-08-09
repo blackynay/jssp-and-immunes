@@ -1,5 +1,6 @@
 // Fig. 20.12: BinarySearchTest.java
 // Collections method binarySearch.
+package ch20.fig20_12;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
