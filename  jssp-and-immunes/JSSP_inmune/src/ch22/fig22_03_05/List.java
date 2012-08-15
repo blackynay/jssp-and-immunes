@@ -1,6 +1,6 @@
 // Fig. 22.3: List.java
 // ListNode and List class declarations.
-package com.deitel.ch22;
+package ch22.fig22_03_05;
 
 // class to represent one node in a list
 class ListNode< T > 

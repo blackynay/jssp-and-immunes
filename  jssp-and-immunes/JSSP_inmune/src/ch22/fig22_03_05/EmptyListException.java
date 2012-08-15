@@ -1,6 +1,6 @@
 // Fig. 22.4: EmptyListException.java
 // Class EmptyListException declaration.
-package com.deitel.ch22;
+package ch22.fig22_03_05;
 
 public class EmptyListException extends RuntimeException 
 {

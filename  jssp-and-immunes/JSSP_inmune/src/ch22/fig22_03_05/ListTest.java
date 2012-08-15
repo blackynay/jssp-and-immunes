@@ -1,7 +1,9 @@
 // Fig. 22.5: ListTest.java
 // ListTest class to demonstrate List capabilities.
-import com.deitel.ch22.List;
-import com.deitel.ch22.EmptyListException;
+package ch22.fig22_03_05;
+import ch22.fig22_03_05.EmptyListException;
+import ch22.fig22_03_05.List;
+
 
 public class ListTest 
 {
