@@ -41,7 +41,6 @@ public class Clonalg
 		for(int i=0;i<pop.length;i++)
 		{
 			pop[i]=string_aleatorios(numero_bits);
-			//System.out.println(pop[i]);
 					
 		}
 	return pop;	
