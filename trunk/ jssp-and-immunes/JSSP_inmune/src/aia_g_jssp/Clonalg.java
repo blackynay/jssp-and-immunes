@@ -49,13 +49,10 @@ public class Clonalg
 	
 	public int[] decodificar(String[] pop)
 	{
-		
 		int []b= new int [pop.length];
-		//return a;
 		for (int i=0;i<pop.length;i++){
             int numero = Integer.parseInt(pop[i],2);
             b[i]= numero;
-            //System.out.println(b[i]);
 		}
 		return b;
 		
