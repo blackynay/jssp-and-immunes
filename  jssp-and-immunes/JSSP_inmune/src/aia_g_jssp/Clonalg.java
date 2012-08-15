@@ -56,4 +56,15 @@ public class Clonalg
 		return b;
 		
 	}
+	
+	public double[] Funcion_Objetivo(int[] adecode)
+	{
+		double[]costo=new double[adecode.length];
+		for(int i=0;i<adecode.length;i++){
+		
+				costo[i]=(double)Math.pow(adecode[i],2);
+			
+		}
+		return costo;
+	}
 }
