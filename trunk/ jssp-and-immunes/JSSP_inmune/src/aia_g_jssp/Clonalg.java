@@ -35,9 +35,9 @@ public class Clonalg
 		return s;
 	}
 	
-	public String[] Crear_Poblacion(double numero_bits)
+	public String[] Crear_Poblacion(double numero_bits, int tampob)
 	{
-		 String [] pop=new String [tamano_pob];
+		 String [] pop=new String [tampob];
 		for(int i=0;i<pop.length;i++)
 		{
 			pop[i]=string_aleatorios(numero_bits);
