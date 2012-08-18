@@ -14,6 +14,7 @@ public class PruebaClonalg{
 					System.out.println(adecode[i]);
 					System.out.println(costo[i]);
 				}
+				
 		
 			
 	}
