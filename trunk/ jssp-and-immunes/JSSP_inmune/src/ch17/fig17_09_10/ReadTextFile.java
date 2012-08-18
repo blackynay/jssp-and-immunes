@@ -18,7 +18,7 @@ public class ReadTextFile
    {
       try
       {
-         input = new Scanner( new File( "clients.txt" ) );
+         input = new Scanner( new File( "C:\archivos nelson\proyecto inmune\JSSP_inmune\src\aia_g_jssp\clients.txt") );
       } // end try
       catch ( FileNotFoundException fileNotFoundException )
       {
