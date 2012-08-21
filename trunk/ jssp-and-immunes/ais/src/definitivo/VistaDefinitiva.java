@@ -333,7 +333,7 @@ public class VistaDefinitiva extends JFrame {
 		
            BufferedReader br = new BufferedReader(fr);
            String linea=null;
-           Reader linea1;
+//           Reader linea1;
            
            
            try {
@@ -396,8 +396,12 @@ public class VistaDefinitiva extends JFrame {
            return true;
            
         }
-        //Fin Funcion Abrir
-       
+        //Fin Funcion Abrir Archivo
+        
+/*       private int [][] retornarMatriz(int instancia[][]){
+ 	   return instancia;
+    	 }  
+*/       
       
         
         
