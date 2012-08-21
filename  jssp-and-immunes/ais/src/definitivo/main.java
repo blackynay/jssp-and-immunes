@@ -9,8 +9,11 @@ public class main {
 	 * @param args
 	 */
 	public static void main(String argv[]) {
-        new VistaDefinitiva();
+        VistaDefinitiva vista =new VistaDefinitiva();
+       
         
+//        FuncionObjetivo objetivo =	new FuncionObjetivo ();
+//        objetivo.sumar(prueba);
 
         
       }
