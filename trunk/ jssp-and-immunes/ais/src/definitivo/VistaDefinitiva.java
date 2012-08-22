@@ -199,9 +199,9 @@ public class VistaDefinitiva extends JFrame {
         				
         				formulario.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         				System.exit(0);
-        			//	formulario.EXIT_ON_CLOSE
-        			}
+        		     			}
         		});
+                
                 
                 //Boton Borrar Campos
                 b_borrar.addActionListener(
@@ -221,44 +221,9 @@ public class VistaDefinitiva extends JFrame {
                            
                            public void actionPerformed( ActionEvent evento )
                            {
-                              String accion = evento.getActionCommand();
-                              
-                              
-                            String tas_clonal,fac_mutac,tam_pobla,tam_proble,tam_seccio,num_rand_cel, umbral;
-               				Object tp_material;
-               				tam_pobla = tf_tam_pobla.getText();
-               				fac_mutac = tf_fac_mutac.getText();
-               				tas_clonal = tf_tas_clonac.getText();        				
-               				tam_proble = tf_tam_proble.getText();
-               				tam_seccio = tf_tam_seccio.getText();		
-               				num_rand_cel = tf_num_rand_cel.getText();
-               				umbral =tf_umbral.getText(); 
-               				
-               				
-               				/////Validar Campos vacios///////////////////////
-               				if (tas_clonal.length() != 0 && fac_mutac.length() != 0 && tam_proble.length() != 0 && tam_pobla.length() != 0 && tam_seccio.length() != 0 && num_rand_cel.length() != 0 && umbral.length() !=0 
-               						){
-               					//////////////validar solo numeros////////////////////////////
-               					if(tas_clonal.matches("[0-9]*") && fac_mutac.matches("[0-9]*") && tam_proble.matches("[0-9]*") && tam_pobla.matches("[0-9]*") && tam_seccio.matches("[0-9]*") && num_rand_cel.matches("[0-9]*") && umbral.matches("[0-9]") )
-               					{
-               						    new Resultados();
-               						    formulario.setVisible(false);
-               						    
-               					}
-               					else{                						          					
-               							dialogo.setVisible(true);
-               					    }
-               					}
-               				else{
-               					dialogo.setVisible(true);
-               				//boton_impresion();
-               					}
-                             
-                              
-                           } // fin ActionPerformed
-                           
-                        } // fin ActionListener
-                     
+                              validar(evento);                        	                             
+                           } // fin ActionPerformed                           
+                        } // fin ActionListener                     
                      );//Fin Boton Ejecutar
                 
                 
@@ -276,19 +241,17 @@ public class VistaDefinitiva extends JFrame {
           	    dialogo.add(ok);
           		dialogo.setModal(true);  
           		
-                   ok.addActionListener(new ActionListener() {
+                ok.addActionListener(new ActionListener() {
           						
           			public void actionPerformed(ActionEvent e) {
-          			//dialogo.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-          				//System.exit(0);
-          				dialogo.dispose();
-          			//	
+          			   				dialogo.dispose();        				
           			}
-          		});
-                //Fin Ventana de Dialogo
-                           
-        }
-        //Fin de la Funcion VistaDefinitiva
+          		});   //Fin Ventana de Dialogo
+                        
+        } //Fin de la Funcion VistaDefinitiva
+        
+        //******************************************************************
+        //*************************FUNCIONES********************************
         
         //Funcion Borrar Campos
         public void borrarCampos(){
@@ -396,14 +359,43 @@ public class VistaDefinitiva extends JFrame {
            return true;
            
         }
+        
+        
+        
         //Fin Funcion Abrir Archivo
         
-/*       private int [][] retornarMatriz(int instancia[][]){
- 	   return instancia;
-    	 }  
-*/       
-      
-        
-        
-        
-}
+    public void validar(ActionEvent evento) {
+    	
+    	String accion = evento.getActionCommand();
+               
+        String tas_clonal,fac_mutac,tam_pobla,tam_proble,tam_seccio,num_rand_cel, umbral;
+			Object tp_material;
+			tam_pobla = tf_tam_pobla.getText();
+			fac_mutac = tf_fac_mutac.getText();
+			tas_clonal = tf_tas_clonac.getText();        				
+			tam_proble = tf_tam_proble.getText();
+			tam_seccio = tf_tam_seccio.getText();		
+			num_rand_cel = tf_num_rand_cel.getText();
+			umbral =tf_umbral.getText(); 
+			
+			
+			/////Validar Campos vacios///////////////////////
+			if (tas_clonal.length() != 0 && fac_mutac.length() != 0 && tam_proble.length() != 0 && tam_pobla.length() != 0 && tam_seccio.length() != 0 && num_rand_cel.length() != 0 && umbral.length() !=0 
+					){
+				//////////////validar solo numeros////////////////////////////
+				if(tas_clonal.matches("[0-9]*") && fac_mutac.matches("[0-9]*") && tam_proble.matches("[0-9]*") && tam_pobla.matches("[0-9]*") && tam_seccio.matches("[0-9]*") && num_rand_cel.matches("[0-9]*") && umbral.matches("[0-9]") )
+				{
+					    new Resultados();
+					    formulario.setVisible(false);
+					    
+				}
+				else{                						          					
+						dialogo.setVisible(true);
+				    }
+				}
+			else{
+				dialogo.setVisible(true);
+			}
+      	}
+            
+       }
