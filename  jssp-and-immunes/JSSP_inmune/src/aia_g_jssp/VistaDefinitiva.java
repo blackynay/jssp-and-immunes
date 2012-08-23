@@ -185,7 +185,7 @@ public class VistaDefinitiva extends JFrame {
                 elemento_Abrir.addActionListener(new ActionListener() {
                                                                                 @Override
                                         public void actionPerformed(ActionEvent e) {
-                                                abrirArchivo();
+                                                int matriz[][]=abrirArchivo();
                                                 // TODO Auto-generated method stub
                                         }
                                 });
@@ -306,8 +306,10 @@ public class VistaDefinitiva extends JFrame {
         
         
         //Funcion Abrir Archivo
-        private boolean abrirArchivo()
+        protected int[][] abrirArchivo()
         {
+        	boolean valido = false;
+        	int prueba[][] = new int[0][0];
            // mostrar cuadro de diálogo para que el usuario pueda seleccionar el archivo
            JFileChooser selectorArchivo = new JFileChooser();
            selectorArchivo.setFileSelectionMode( JFileChooser.FILES_ONLY );
@@ -315,86 +317,73 @@ public class VistaDefinitiva extends JFrame {
            int resultado = selectorArchivo.showOpenDialog( this );
 
            // si el usuario hizo clic en el botón Cancelar del cuadro de diálogo, regresar
-           if ( resultado == JFileChooser.CANCEL_OPTION )
-              return false;
-           
-           // obtener el archivo seleccionado
-           File archivo = null;
-           archivo = selectorArchivo.getSelectedFile(); 
-          
-          
-          FileReader fr = null;
-       
-                try {
-                        fr = new FileReader(archivo);
-                } catch (FileNotFoundException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                }      
-                int a= 0;
-                
-           BufferedReader br = new BufferedReader(fr);
-           String linea=null;
-//           Reader linea1;
-           
-           
-           try {
-                        
-                   String primeraLinea = br.readLine();
-                   String[] temp = primeraLinea.split(" ");
-                   System.out.println("temporal 1 "+temp[1]); //dato uno
-                   System.out.println("temporal 2 "+temp[2]); // dato dos
-                   String instancia[][] = new String[Integer.valueOf(temp[1])][(Integer.valueOf(temp[2])*2)+1];
-                   String fila = " ";
-                   int prueba[][]=new int[Integer.parseInt(temp[1])][Integer.parseInt(temp[1])];
-                   for (int i=0; i < prueba.length  ; i++){
-                	   for (int j=0; j < prueba.length  ; j++){
-                		   prueba[i][j]=0;
-                	   }
-                   }
-                   
-                   System.out.println("prueba"+ prueba);
-                   while ((linea = br.readLine())!= null)
-                           {
-                	   				System.out.println("Lineas   "+linea);
-                                    fila = linea;
-                                    String[] dato = fila.split(" ");
-                                   // System.out.println(dato.length);
-                                    for (int i=0; i < dato.length  ; i++){
-                                     System.out.println(dato[i]);
-                                    //  System.out.println("a= "+a+" i= "+i+" dato= "+dato[i]);
-                                        instancia[a][i] = dato[i];
-                                        prueba[a][i]= Integer.parseInt(instancia[a][i]); 
-                                        fichero.append(instancia [a][i]+" ");
-                                         System.out.print(prueba[a][i]+" ");
-//                     					 System.out.print(instancia[a][i]+" "); 
-                            }
-                                    
-                                    int suma=0;
-                                    suma = prueba[0][0]+prueba[0][1];
-                                    System.out.print(prueba[0][0]);
-                                    System.out.print(prueba[0][1]);
-                                    System.out.print("aquí es "+suma);
-//                                  System.out.println(instancia[a]);
-                                    a= a+1;
-                                    break;
-                           }
-                  
-                } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                }
-           
-          
-           return true;
-           
+           if ( resultado == JFileChooser.CANCEL_OPTION ){
+        	   valido = false;
+           }
+           else{
+	           // obtener el archivo seleccionado
+	           File archivo = null;
+	           archivo = selectorArchivo.getSelectedFile(); 
+	          
+	          
+	          FileReader fr = null;
+	       
+	                try {
+	                        fr = new FileReader(archivo);
+	                } catch (FileNotFoundException e) {
+	                        // TODO Auto-generated catch block
+	                        e.printStackTrace();
+	                }           
+	           BufferedReader br = new BufferedReader(fr);
+	           prueba=Convertir(br);
+	           
+	//         Reader linea1; 
+	           valido = true;
+           }
+           if(valido){
+        	   return prueba;
+           }
+           else{
+        	   return null;
+           }
+            
         }
         //Fin Funcion Abrir Archivo
         
-/*       private int [][] retornarMatriz(int instancia[][]){
-           return instancia;
-         }  
-*/       
+       private int [][] Convertir(BufferedReader br){
+    	   String linea=null;
+    	   try {
+               
+               String primeraLinea = br.readLine();
+               String[] temp = primeraLinea.split(" ");
+               System.out.println("temporal 1 "+temp[1]); //dato uno
+               System.out.println("temporal 2 "+temp[2]); // dato dos
+               String instancia[][] = new String[Integer.valueOf(temp[1])][(Integer.valueOf(temp[2])*2)];
+               String fila = " ";
+               int prueba[][]=new int[Integer.parseInt(temp[1])][Integer.parseInt(temp[1])];
+               int a= 0;
+               while ((linea = br.readLine())!= null)
+                       {
+                                fila = linea;
+                                String[] dato = fila.split(" ");
+                                for (int i=0; i < dato.length  ; i++){
+                                      instancia[a][i] = dato[i];
+                                      prueba[a][i]= Integer.parseInt(instancia[a][i]); 
+                                      fichero.append(instancia [a][i]+" ");
+                                      System.out.print(prueba[a][i]+" ");
+                                	}
+                                System.out.println();
+                                a=a+1;
+                       }   
+               return prueba;
+            } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+            }
+		return null;
+    	   
+         }
+      
       
         
         
