@@ -1,4 +1,5 @@
 package definitivo;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -9,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 
-import definitivo.Resultados;
+//import definitivo.Resultados;
 
 
 import java.io.BufferedReader;
@@ -21,27 +22,27 @@ import java.io.Reader;
 
 
 public class VistaDefinitiva extends JFrame {
-		private JFrame formulario;
-		private JPanel norte,centro,contenedor;
-		
-	    private JLabel lb_instancia,lb_parametro, lb_clonal, lb_grasp,lb_tam_pobla,lb_fac_mutac,lb_tas_clonac,lb_tam_proble,lb_tam_seccio,lb_num_rand_cel, lb_umbral;
-		private JTextField tf_tam_pobla,tf_fac_mutac,tf_tas_clonac,tf_tam_proble,tf_tam_seccio,tf_num_rand_cel, tf_umbral;
-		private JTextArea fichero;
-		private JButton b_ejecutar,b_borrar,b_salir;
-		private JDialog dialogo;
-		private JMenuBar menu;
-		private JMenu menuArchivo;
-		private JMenuItem elemento_Abrir, elemento_Salir;
-		
-		private String newline = "\n";
-		private int mas,der, tam_cam;
-		
-		
-		
-	
+                private JFrame formulario;
+                private JPanel norte,centro,contenedor;
+                
+            private JLabel lb_instancia,lb_parametro, lb_clonal, lb_grasp,lb_tam_pobla,lb_fac_mutac,lb_tas_clonac,lb_tam_proble,lb_tam_seccio,lb_num_rand_cel, lb_umbral;
+                private JTextField tf_tam_pobla,tf_fac_mutac,tf_tas_clonac,tf_tam_proble,tf_tam_seccio,tf_num_rand_cel, tf_umbral;
+                private JTextArea fichero;
+                private JButton b_ejecutar,b_borrar,b_salir;
+                private JDialog dialogo;
+                private JMenuBar menu;
+                private JMenu menuArchivo;
+                private JMenuItem elemento_Abrir, elemento_Salir;
+                
+                private String newline = "\n";
+                private int mas,der, tam_cam;
+                
+                
+                
+        
         
         public VistaDefinitiva() {
-        	
+                
                 super("Formulario Básico");
                 
                 
@@ -181,94 +182,133 @@ public class VistaDefinitiva extends JFrame {
                
                 //Clic Abrir Instancia
                 elemento_Abrir.addActionListener(new ActionListener() {
-										@Override
-					public void actionPerformed(ActionEvent e) {
-						abrirArchivo();
-						// TODO Auto-generated method stub
-					}
-				});
+                                                                                @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                                int matriz[][]=abrirArchivo();
+                                                // TODO Auto-generated method stub
+                                        }
+                                });
                 
                 
                 //Boton Salir
                 b_salir.addActionListener(
-                		new ActionListener() {
-        			
-        			@Override
-        			public void actionPerformed(ActionEvent e) {
-        				// TODO Auto-generated method stub
-        				
-        				formulario.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        				System.exit(0);
-        		     			}
-        		});
-                
+                                new ActionListener() {
+                                
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                        // TODO Auto-generated method stub
+                                        
+                                        formulario.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                                        System.exit(0);
+                                //      formulario.EXIT_ON_CLOSE
+                                }
+                        });
                 
                 //Boton Borrar Campos
                 b_borrar.addActionListener(
-                		new ActionListener() {
-							
-							@Override
-							public void actionPerformed(ActionEvent a) {
-								// TODO Auto-generated method stub
-								borrarCampos();
-							}
-						} );
+                                new ActionListener() {
+                                                        
+                                                        @Override
+                                                        public void actionPerformed(ActionEvent a) {
+                                                                // TODO Auto-generated method stub
+                                                                borrarCampos();
+                                                        }
+                                                } );
                                 
                 
                 //Boton Ejecutar
-                b_ejecutar.addActionListener(                 	      
+                b_ejecutar.addActionListener(                         
                         new ActionListener() { // clase interna anónima
                            
                            public void actionPerformed( ActionEvent evento )
                            {
-                              validar(evento);                        	                             
-                           } // fin ActionPerformed                           
-                        } // fin ActionListener                     
+                              String accion = evento.getActionCommand();
+                              
+                              
+                            String tas_clonal,fac_mutac,tam_pobla,tam_proble,tam_seccio,num_rand_cel, umbral;
+                                        Object tp_material;
+                                        tam_pobla = tf_tam_pobla.getText();
+                                        fac_mutac = tf_fac_mutac.getText();
+                                        tas_clonal = tf_tas_clonac.getText();                                   
+                                        tam_proble = tf_tam_proble.getText();
+                                        tam_seccio = tf_tam_seccio.getText();           
+                                        num_rand_cel = tf_num_rand_cel.getText();
+                                        umbral =tf_umbral.getText(); 
+                                        
+                                        
+                                        /////Validar Campos vacios///////////////////////
+                                        if (tas_clonal.length() != 0 && fac_mutac.length() != 0 && tam_proble.length() != 0 && tam_pobla.length() != 0 && tam_seccio.length() != 0 && num_rand_cel.length() != 0 && umbral.length() !=0 
+                                                        ){
+                                                //////////////validar solo numeros////////////////////////////
+                                                if(tas_clonal.matches("[0-9]*") && fac_mutac.matches("[0-9]*") && tam_proble.matches("[0-9]*") && tam_pobla.matches("[0-9]*") && tam_seccio.matches("[0-9]*") && num_rand_cel.matches("[0-9]*") && umbral.matches("[0-9]") )
+                                                {
+                                                            new Resultados();
+                                                            formulario.setVisible(false);
+                                                            
+                                                }
+                                                else{                                                                                                           
+                                                                dialogo.setVisible(true);
+                                                    }
+                                                }
+                                        else{
+                                                dialogo.setVisible(true);
+                                        //boton_impresion();
+                                                }
+                             
+                              
+                           } // fin ActionPerformed
+                           
+                        } // fin ActionListener
+                     
                      );//Fin Boton Ejecutar
                 
                 
                 //Ventana DIALOGO de Validación
                 JButton ok = new JButton("OK");
-          		JLabel advertencia = new JLabel("Verifique que todos los campos contengan solo números");
-          		dialogo = new JDialog();
-          		dialogo.setTitle("Error");
-          		dialogo.setLayout(new FlowLayout());
-          	    dialogo.setSize(400, 90);
-          	    dialogo.setLocationRelativeTo(this.contenedor);
-          	    dialogo.add(advertencia);
-          	    //ok.setResizable(false);
-          	    dialogo.setResizable(false);
-          	    dialogo.add(ok);
-          		dialogo.setModal(true);  
-          		
-                ok.addActionListener(new ActionListener() {
-          						
-          			public void actionPerformed(ActionEvent e) {
-          			   				dialogo.dispose();        				
-          			}
-          		});   //Fin Ventana de Dialogo
+                        JLabel advertencia = new JLabel("Verifique que todos los campos contengan solo números");
+                        dialogo = new JDialog();
+                        dialogo.setTitle("Error");
+                        dialogo.setLayout(new FlowLayout());
+                    dialogo.setSize(400, 90);
+                    dialogo.setLocationRelativeTo(this.contenedor);
+                    dialogo.add(advertencia);
+                    //ok.setResizable(false);
+                    dialogo.setResizable(false);
+                    dialogo.add(ok);
+                        dialogo.setModal(true);  
                         
-        } //Fin de la Funcion VistaDefinitiva
-        
-        //******************************************************************
-        //*************************FUNCIONES********************************
+                   ok.addActionListener(new ActionListener() {
+                                                        
+                                public void actionPerformed(ActionEvent e) {
+                                //dialogo.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                                        //System.exit(0);
+                                        dialogo.dispose();
+                                //      
+                                }
+                        });
+                //Fin Ventana de Dialogo
+                           
+        }
+        //Fin de la Funcion VistaDefinitiva
         
         //Funcion Borrar Campos
         public void borrarCampos(){
-        	
-        	tf_tam_pobla.setText("");
-        	tf_fac_mutac.setText("");
-        	tf_tas_clonac.setText("");
-        	tf_tam_proble.setText("");
-        	tf_tam_seccio.setText("");
-        	tf_num_rand_cel.setText("");
-        	tf_umbral.setText("");
+                
+                tf_tam_pobla.setText("");
+                tf_fac_mutac.setText("");
+                tf_tas_clonac.setText("");
+                tf_tam_proble.setText("");
+                tf_tam_seccio.setText("");
+                tf_num_rand_cel.setText("");
+                tf_umbral.setText("");
         }
         
         
         //Funcion Abrir Archivo
-        private boolean abrirArchivo()
+        protected int[][] abrirArchivo()
         {
+                boolean valido = false;
+                int prueba[][] = new int[0][0];
            // mostrar cuadro de diálogo para que el usuario pueda seleccionar el archivo
            JFileChooser selectorArchivo = new JFileChooser();
            selectorArchivo.setFileSelectionMode( JFileChooser.FILES_ONLY );
@@ -276,126 +316,72 @@ public class VistaDefinitiva extends JFrame {
            int resultado = selectorArchivo.showOpenDialog( this );
 
            // si el usuario hizo clic en el botón Cancelar del cuadro de diálogo, regresar
-           if ( resultado == JFileChooser.CANCEL_OPTION )
-              return false;
-           
-           // obtener el archivo seleccionado
-           File archivo = null;
-           archivo = selectorArchivo.getSelectedFile(); 
-          
-          
-          FileReader fr = null;
-       
-		try {
-			fr = new FileReader(archivo);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}      
-		int a= 0;
-		
-           BufferedReader br = new BufferedReader(fr);
-           String linea=null;
-//           Reader linea1;
-           
-           
-           try {
-			
-        	   String primeraLinea = br.readLine();
-        	   String[] temp = primeraLinea.split(" ");
-        	   System.out.println("temporal 1 "+temp[1]); //dato uno
-        	   System.out.println("temporal 2 "+temp[2]); // dato dos
-        	   String instancia[][] = new String[Integer.valueOf(temp[1])][(Integer.valueOf(temp[2])*2)+1];
-        	   String fila = "";
-        	   while ((linea = br.readLine())!= null)
-			   {
-				   
-				   
-				    fila = linea;
-				    String[] dato = fila.split(" ");
-				   
-				   // System.out.println(dato.length);
-				   
-				    int prueba[][]=new int[Integer.parseInt(temp[1])][Integer.parseInt(temp[1])];
-				   
-				    for (int i=0; i < dato.length  ; i++){
-//				    	System.out.println(dato[i]);
-				    //	System.out.println("a= "+a+" i= "+i+" dato= "+dato[i]);
-				    	instancia[a][i] = dato[i];
-				    	prueba[a][i]= Integer.parseInt(instancia[a][i]); 
-//				    	System.out.print(prueba[a][i]+" ");
-//		    	System.out.print(instancia[a][i]+" "); 
-		    	    }
-				    
-				    for(int i=0; i < dato.length  ; i++)
-				    {
-				    	fichero.append(instancia [a][i]+" ");
-				    }
-				    System.out.println();
-
-				  	   
-				    
-				    
-				    int suma=0;
-				    suma = prueba[0][0]+prueba[0][1];
-				    System.out.print(prueba[0][0]);
-				    System.out.print(prueba[0][1]);
-				    System.out.print("aquí es "+suma);
-				    
-				    
-//				    System.out.println(instancia[a]);
-				   a= a+1;
-				 
-				    break;
-				   
-			   }
-        	  
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-           
-          
-           return true;
-           
+           if ( resultado == JFileChooser.CANCEL_OPTION ){
+                   valido = false;
+           }
+           else{
+                   // obtener el archivo seleccionado
+                   File archivo = null;
+                   archivo = selectorArchivo.getSelectedFile(); 
+                  
+                  
+                  FileReader fr = null;
+               
+                        try {
+                                fr = new FileReader(archivo);
+                        } catch (FileNotFoundException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                        }           
+                   BufferedReader br = new BufferedReader(fr);
+                   prueba=Convertir(br);
+                   
+        //         Reader linea1; 
+                   valido = true;
+           }
+           if(valido){
+                   return prueba;
+           }
+           else{
+                   return null;
+           }
+            
         }
-        
-        
-        
         //Fin Funcion Abrir Archivo
         
-    public void validar(ActionEvent evento) {
-    	
-    	String accion = evento.getActionCommand();
+       private int [][] Convertir(BufferedReader br){
+           String linea=null;
+           try {
                
-        String tas_clonal,fac_mutac,tam_pobla,tam_proble,tam_seccio,num_rand_cel, umbral;
-			Object tp_material;
-			tam_pobla = tf_tam_pobla.getText();
-			fac_mutac = tf_fac_mutac.getText();
-			tas_clonal = tf_tas_clonac.getText();        				
-			tam_proble = tf_tam_proble.getText();
-			tam_seccio = tf_tam_seccio.getText();		
-			num_rand_cel = tf_num_rand_cel.getText();
-			umbral =tf_umbral.getText(); 
-			
-			
-			/////Validar Campos vacios///////////////////////
-			if (tas_clonal.length() != 0 && fac_mutac.length() != 0 && tam_proble.length() != 0 && tam_pobla.length() != 0 && tam_seccio.length() != 0 && num_rand_cel.length() != 0 && umbral.length() !=0 
-					){
-				//////////////validar solo numeros////////////////////////////
-				if(tas_clonal.matches("[0-9]*") && fac_mutac.matches("[0-9]*") && tam_proble.matches("[0-9]*") && tam_pobla.matches("[0-9]*") && tam_seccio.matches("[0-9]*") && num_rand_cel.matches("[0-9]*") && umbral.matches("[0-9]") )
-				{
-					    new Resultados();
-					    formulario.setVisible(false);
-					    
-				}
-				else{                						          					
-						dialogo.setVisible(true);
-				    }
-				}
-			else{
-				dialogo.setVisible(true);
-			}
-      	}
-            
-       }
+               String primeraLinea = br.readLine();
+               String[] temp = primeraLinea.split(" ");
+               System.out.println("temporal 1 "+temp[1]); //dato uno
+               System.out.println("temporal 2 "+temp[2]); // dato dos
+               String instancia[][] = new String[Integer.valueOf(temp[1])][(Integer.valueOf(temp[2])*2)];
+               String fila = " ";
+               int prueba[][]=new int[Integer.parseInt(temp[1])][(Integer.parseInt(temp[2])*2)];
+               int a= 0;
+               while ((linea = br.readLine())!= null)
+                       {
+                                fila = linea;
+                                String[] dato = fila.split(" ");
+                                for (int i=0; i < dato.length  ; i++){
+                                      instancia[a][i] = dato[i];
+                                      prueba[a][i]= Integer.parseInt(instancia[a][i]); 
+                                      fichero.append(instancia [a][i]+" ");
+                                      System.out.print(prueba[a][i]+" ");
+                                        }
+                                System.out.println();
+                                a=a+1;
+                       }   
+               return prueba;
+            } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+            }
+                return null;
+           
+         }
+      
+}
+
