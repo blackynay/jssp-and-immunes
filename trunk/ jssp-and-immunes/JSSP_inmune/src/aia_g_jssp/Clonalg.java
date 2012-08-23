@@ -67,4 +67,7 @@ public class Clonalg
 		}
 		return costo;
 	}
+	public int[][] recibeMatriz(int matriz[][]){
+		return matriz;
+	}
 }
