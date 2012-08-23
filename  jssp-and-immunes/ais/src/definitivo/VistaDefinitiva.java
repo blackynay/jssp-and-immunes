@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.font.NumericShaper;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.NumberFormatException;
 import java.io.Reader;
 
 
@@ -26,7 +28,7 @@ public class VistaDefinitiva extends JFrame {
                 private JPanel norte,centro,contenedor;
                 
             private JLabel lb_instancia,lb_parametro, lb_clonal, lb_grasp,lb_tam_pobla,lb_fac_mutac,lb_tas_clonac,lb_tam_proble,lb_tam_seccio,lb_num_rand_cel, lb_umbral;
-                private JTextField tf_tam_pobla,tf_fac_mutac,tf_tas_clonac,tf_tam_proble,tf_tam_seccio,tf_num_rand_cel, tf_umbral;
+                private JTextField tf_tam_pobla,tf_fac_mutac,tf_tas_clonac,tf_tam_proble,tf_tam_selec,tf_num_rand_cel, tf_umbral;
                 private JTextArea fichero;
                 private JButton b_ejecutar,b_borrar,b_salir;
                 private JDialog dialogo;
@@ -93,17 +95,20 @@ public class VistaDefinitiva extends JFrame {
                 
                 
                 //crear campos de texto
-                tf_tam_pobla = new JTextField("",5);
-                tf_fac_mutac = new JTextField("",5);
-                tf_tas_clonac = new JTextField("",5);
-                tf_tam_proble = new JTextField("",5);
-                tf_tam_seccio = new JTextField("",5);
-                tf_num_rand_cel = new JTextField("",5);
-                tf_umbral = new JTextField("",5);
+                tf_tam_pobla = new JTextField("100",5);
+                tf_fac_mutac = new JTextField("-2.5",5);
+                tf_tas_clonac = new JTextField("0.1",5);
+                tf_tam_proble = new JTextField("2",5);
+                tf_tam_selec = new JTextField("0.1",5);
+                tf_num_rand_cel = new JTextField("2",5);
+                tf_umbral = new JTextField("0.5",5);
                 
                 //crear área de texto para cargar la instancia
                 fichero = new JTextArea( 100, 100);
+                
                
+                
+                
                 //crear botones
                 b_ejecutar= new JButton("Ejecutar");
                 b_borrar = new JButton("Borrar Campos");
@@ -132,7 +137,7 @@ public class VistaDefinitiva extends JFrame {
                 tf_fac_mutac.setBounds(der+200, 130+mas, tam_camp, 20);
                 tf_tas_clonac.setBounds(der+200, 160+mas, tam_camp, 20);
                 tf_tam_proble.setBounds(der+200, 190+mas, tam_camp, 20);
-                tf_tam_seccio.setBounds(der+200, 220+mas, tam_camp, 20);
+                tf_tam_selec.setBounds(der+200, 220+mas, tam_camp, 20);
                 tf_num_rand_cel.setBounds(der+200, 250+mas, tam_camp, 20);
                 tf_umbral.setBounds(der+200, 330+mas, tam_camp, 20);
                       
@@ -164,7 +169,7 @@ public class VistaDefinitiva extends JFrame {
                 centro.add(tf_fac_mutac);
                 centro.add(tf_tas_clonac);
                 centro.add(tf_tam_proble);
-                centro.add(tf_tam_seccio);
+                centro.add(tf_tam_selec);
                 centro.add(tf_num_rand_cel);
                 centro.add(tf_umbral);
                 
@@ -224,38 +229,57 @@ public class VistaDefinitiva extends JFrame {
                            {
                               String accion = evento.getActionCommand();
                               
-                              
-                            String tas_clonal,fac_mutac,tam_pobla,tam_proble,tam_seccio,num_rand_cel, umbral;
-                                        Object tp_material;
-                                        tam_pobla = tf_tam_pobla.getText();
-                                        fac_mutac = tf_fac_mutac.getText();
-                                        tas_clonal = tf_tas_clonac.getText();                                   
-                                        tam_proble = tf_tam_proble.getText();
-                                        tam_seccio = tf_tam_seccio.getText();           
-                                        num_rand_cel = tf_num_rand_cel.getText();
-                                        umbral =tf_umbral.getText(); 
-                                        
-                                        
-                                        /////Validar Campos vacios///////////////////////
-                                        if (tas_clonal.length() != 0 && fac_mutac.length() != 0 && tam_proble.length() != 0 && tam_pobla.length() != 0 && tam_seccio.length() != 0 && num_rand_cel.length() != 0 && umbral.length() !=0 
-                                                        ){
-                                                //////////////validar solo numeros////////////////////////////
-                                                if(tas_clonal.matches("[0-9]*") && fac_mutac.matches("[0-9]*") && tam_proble.matches("[0-9]*") && tam_pobla.matches("[0-9]*") && tam_seccio.matches("[0-9]*") && num_rand_cel.matches("[0-9]*") && umbral.matches("[0-9]") )
-                                                {
-                                                            new Resultados();
-                                                            formulario.setVisible(false);
-                                                            
-                                                }
-                                                else{                                                                                                           
-                                                                dialogo.setVisible(true);
-                                                    }
-                                                }
-                                        else{
-                                                dialogo.setVisible(true);
-                                        //boton_impresion();
-                                                }
                              
-                              
+                            int tam_pobla,tam_proble,num_rand_cel;
+                            double tas_clonal=0.0;
+                            double umbral=0.0;
+                            double tam_selec=0.0;
+                            double fac_mutac=0.0;
+                                        
+                                      
+                           try{ 
+                        	   tam_pobla = Integer.parseInt(tf_tam_pobla.getText());
+                                try{
+                             	   fac_mutac = Double.parseDouble(tf_fac_mutac.getText());
+                             	  try{
+                               	   tas_clonal = Double.parseDouble(tf_tas_clonac.getText());                                   
+                               	   	try{  
+                               	   		tam_proble = Integer.parseInt(tf_tam_proble.getText());
+	                               	 try{
+	                                 	tam_selec = Double.parseDouble(tf_tam_selec.getText());           
+	                                 	try{
+	                                 	   num_rand_cel = Integer.parseInt(tf_num_rand_cel.getText());
+	                                 	  try{
+	                              	   		umbral = Double.parseDouble(tf_umbral.getText()); 
+	                              	   		new Resultados();
+	                              	   		formulario.setVisible(false);     
+	                                     		} catch(NumberFormatException nfe)
+	                                     		{ JOptionPane.showMessageDialog(tf_umbral,"Verifique que el campo Umbral no se encuentre vacío. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
+	                                     		}    
+	                             	   		} catch(NumberFormatException nfe)
+	                             	   		{ JOptionPane.showMessageDialog(tf_num_rand_cel,"Verifique que el campo Número Ranomíco de Células no se encuentre vacío. \n \n El campo solo admite valores enteros");
+	                             	         }    
+	                               	 		}catch(NumberFormatException nfe)
+	                               	 			{JOptionPane.showMessageDialog(tf_tam_selec,"Verifique que el campo Tamaño de la Selección no se encuentre vacío. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
+	                               	 			}
+                               	   		}catch(NumberFormatException nfe)
+                               	   			{JOptionPane.showMessageDialog(tf_tam_proble,"Verifique que el campo Tamaño del Problema no se encuentre vacío. \n \n El campo solo admite valores enteros");
+                               	   			}                                             	   
+                                       } catch(NumberFormatException nfe)
+                                          {JOptionPane.showMessageDialog(tf_tas_clonac,"Verifique que el campo Tasa de Clonación no se encuentre vacío. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
+                                   	   }            
+                                     }catch(NumberFormatException nfe)
+                                            { JOptionPane.showMessageDialog(tf_fac_mutac,"Verifique que el campo Factor de Mutación no se encuentre vacío. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
+                                         	}
+                                }  catch(NumberFormatException nfe)
+                                       {JOptionPane.showMessageDialog(tf_tam_pobla,"Verifique que el campo Tamaño de la Población no se encuentre vacío. \n \n El campo solo admite valores enteros");
+                                    	}
+                           /*
+                           
+                          
+                          
+                           
+                          */
                            } // fin ActionPerformed
                            
                         } // fin ActionListener
@@ -298,7 +322,7 @@ public class VistaDefinitiva extends JFrame {
                 tf_fac_mutac.setText("");
                 tf_tas_clonac.setText("");
                 tf_tam_proble.setText("");
-                tf_tam_seccio.setText("");
+                tf_tam_selec.setText("");
                 tf_num_rand_cel.setText("");
                 tf_umbral.setText("");
         }
@@ -371,6 +395,7 @@ public class VistaDefinitiva extends JFrame {
                                       fichero.append(instancia [a][i]+" ");
                                       System.out.print(prueba[a][i]+" ");
                                         }
+                                fichero.append(newline);
                                 System.out.println();
                                 a=a+1;
                        }   
