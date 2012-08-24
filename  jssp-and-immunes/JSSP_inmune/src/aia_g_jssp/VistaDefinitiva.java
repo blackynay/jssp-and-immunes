@@ -417,7 +417,7 @@ public class VistaDefinitiva extends JFrame {
        {
     	   int [] vector=new int [1+(t1*t2)];
     	   int k=0;
-    	   for(int i=1;i<t2;i+=2)
+    	   for(int i=1;i<2*t2;i+=2)
     	   {
     		   for(int j=0;j<t1;j++){
     			   k=k+1;
