@@ -11,7 +11,7 @@ public class main {
         public static void main(String argv[]) {
         VistaDefinitiva vista =new VistaDefinitiva();
       
-        Clonalg alg=new Clonalg();
+        //Clonalg alg=new Clonalg();
         
         
        //int prueba [][]=vista.abrirArchivo();

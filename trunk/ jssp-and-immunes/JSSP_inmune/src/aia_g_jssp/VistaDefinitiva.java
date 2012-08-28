@@ -2,6 +2,7 @@ package aia_g_jssp;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.NumberFormatException;
 import java.io.Reader;
+import javax.swing.JScrollPane;
 
 
 public class VistaDefinitiva extends JFrame {
@@ -108,7 +110,9 @@ public class VistaDefinitiva extends JFrame {
                 //crear área de texto para cargar la instancia
                 fichero = new JTextArea( 100, 100);
                 
-               
+                //Crear ScrollPane
+                JScrollPane scrollPane = new JScrollPane(fichero);
+
                 
                 
                 //crear botones
@@ -152,6 +156,9 @@ public class VistaDefinitiva extends JFrame {
                 
                 //Posicionar TextArea
                 fichero.setBounds(50,70,350,350);
+                setPreferredSize(new Dimension(50, 120));
+                add(scrollPane,BorderLayout.NORTH);
+                
                 
                 //Agregar Label al formulario
                 centro.add(lb_instancia);
@@ -178,8 +185,9 @@ public class VistaDefinitiva extends JFrame {
                 //Agregar TextArea
                 centro.add(fichero);
                 fichero.setVisible(true);
+                scrollPane.setVisible(true);
                 fichero.setEditable(false);
-              
+                scrollPane.createVerticalScrollBar();
                 
                 //Agregar Botones al formulario
                 centro.add(b_ejecutar);
@@ -425,7 +433,16 @@ public class VistaDefinitiva extends JFrame {
     			   System.out.println(vector[k]);
     		   }
     	   }
-    	   
+    	   generarTrabajos(t1, t2);
     	   return vector;
+       }
+       
+       public int [][] veriRestric(int [] trabajos){
+    	   int [][] calendario=new int [0][0];
+    	   return calendario;
+       }
+       
+       public int generarTrabajos(int t1,int t2){
+    	   
        }
 }

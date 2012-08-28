@@ -70,4 +70,13 @@ public class Clonalg
 	public int[][] recibeMatriz(int matriz[][]){
 		return matriz;
 	}
+	
+    public int [][] veriRestric(int [] trabajos){
+ 	   int [][] calendario=new int [0][0];
+ 	   
+ 	   return calendario;
+    }
+    
+
+	
 }
