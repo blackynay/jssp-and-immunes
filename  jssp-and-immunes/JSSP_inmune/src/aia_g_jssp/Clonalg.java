@@ -71,11 +71,35 @@ public class Clonalg
 		return matriz;
 	}
 	
-    public int [][] veriRestric(int [] trabajos){
+    public int [][] veriRestric(int [] trabajos, int [][]inst, int J, int M){
+    	int j=0;
+    	int time[]=new int [trabajos.length];
+    	int trab_actual[][]=new int [M][J];
+    	for(int i=0;i<trabajos.length;i++){
+    		
+    	}
+    	int f;
+    	for(int i=0;i<trabajos.length;i++){
+    		
+    		f=trabajos[i];
+    		
+    		time[i]= inst[f][2*j];
+    		
+    		if((i+1)%4==0){
+    			j=j+1;
+    		}
+    		System.out.println(j);
+    	}
+    	
  	   int [][] calendario=new int [0][0];
  	   
  	   return calendario;
     }
+    
+   /* public int veri_band_J(){
+    	
+    }*/
+  
     
 
 	
