@@ -3,8 +3,8 @@ import java.lang.Math;
 
 public class Clonalg
 {
-        /* configuraciÃ³n del problema */
-        private double tamaÃ±o_problema = 2.0;
+        /* configuración del problema */
+        private double tamaño_problema = 2.0;
         // configuracion del algoritmo
         private int gen_max =100;
         private int tamano_pob =100;
@@ -74,21 +74,26 @@ public class Clonalg
         int j = 0;
         int time[] = new int [trabajos.length];
         int trab_actual[][] = new int [M][J];
+        boolean ban_J [][]=new boolean [J][M];
         for(int i = 0 ; i < M ; i++){
-        	for(int j1 = 0; j1 < J; j1++){
+                for(int j1 = 0; j1 < J; j1++){
                 trab_actual[i][j1]= 0;
+                ban_J[i][j1]=false;
                 //System.out.println(trab_actual[i][j1]);
                 //System.out.println();
-        	}
+                }
         }
         int t;
+        
         for(int i=0 ;i < trabajos.length; i++){
 
                 t = trabajos[i];
-                time[i]= inst[t][((j*2)+1)];   
-                System.out.println(time[i]);
+                veri_ban_J(ban_J,M,t);
+                //ban_J[t][]
+                //time[i]= inst[t][((j*2)+1)];   
+                //System.out.println(time[i]);
                 if(i % J == J-1){
-                	j=j+1;
+                        j=j+1;
                     //System.out.println(i);
                 }
                 
@@ -99,9 +104,19 @@ public class Clonalg
            return calendario;
     }
     
-   /* public int veri_band_J(){
-        
-    }*/
+   public int veri_ban_J(boolean ban[][],int M, int t){
+	   int actual=0;
+	   for(int i=0;i<M;i++) {
+		   if (ban[t][i]==true)
+		   {
+			   actual++;
+		   }
+		   else {
+				   return actual;
+			   	}
+	   }
+	   return actual;
+    }
   
     
 
