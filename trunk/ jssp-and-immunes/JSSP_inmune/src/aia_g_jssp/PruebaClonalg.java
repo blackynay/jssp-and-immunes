@@ -1,3 +1,4 @@
+package aia_g_jssp;
 public class PruebaClonalg{
         public static void main (String[] args)
         {
