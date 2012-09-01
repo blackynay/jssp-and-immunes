@@ -74,21 +74,23 @@ public class Clonalg
         int j = 0;
         int time[] = new int [trabajos.length];
         int trab_actual[][] = new int [M][J];
-        boolean ban_J [][]=new boolean [J][M];
+        boolean ban_J_inst [][]=new boolean [J][M];
         for(int i = 0 ; i < M ; i++){
                 for(int j1 = 0; j1 < J; j1++){
                 trab_actual[i][j1]= 0;
-                ban_J[i][j1]=false;
-                //System.out.println(trab_actual[i][j1]);
+                ban_J_inst[j1][i]=false;
+                //System.out.println(ban_J_inst[j1][i]);
+                System.out.println(trab_actual[i][j1]);
                 //System.out.println();
                 }
         }
+        
         int t;
         
         for(int i=0 ;i < trabajos.length; i++){
 
                 t = trabajos[i];
-                veri_ban_J(ban_J,M,t);
+                //veri_ban_J(ban_J,M,t);
                 //ban_J[t][]
                 //time[i]= inst[t][((j*2)+1)];   
                 //System.out.println(time[i]);
