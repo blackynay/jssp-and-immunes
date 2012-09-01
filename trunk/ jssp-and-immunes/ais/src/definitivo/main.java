@@ -10,7 +10,7 @@ public class main {
 	 */
 	public static void main(String argv[]) {
         VistaDefinitiva vista =new VistaDefinitiva();
-       
+//       new Resultados();
         
 //        FuncionObjetivo objetivo =	new FuncionObjetivo ();
 //        objetivo.sumar(prueba);
