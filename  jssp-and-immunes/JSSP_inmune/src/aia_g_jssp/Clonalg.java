@@ -1,27 +1,25 @@
 package aia_g_jssp;
-import java.lang.Math;
-
 public class Clonalg
 {
-        /* configuración del problema */
-        private double tamaño_problema = 2.0;
+        /* configuraciÃ³n del problema */
+        private double tamaÃ±o_problema = 2.0;
         // configuracion del algoritmo
         private int gen_max =100;
         private int tamano_pob =100;
         private double factor_clonac = 0.1;
         private int numero_alet = 2;
         private double factor_mutacion=-2.5;
-        
+       
         public double calcular_tasa_mutacion( /* falta anticuerpo*/)
         {
                 return factor_mutacion;
         }
-        
+       
         public double num_clones(double tamano_pob ,double factor_clonac)
         {
                 return Math.floor(tamano_pob*factor_clonac);
         }
-        
+       
         public String string_aleatorios(double numero_bits)
         {
                 String s="";
@@ -33,18 +31,18 @@ public class Clonalg
                 }
                 return s;
         }
-        
+       
         public String[] Crear_Poblacion(double numero_bits, int tampob)
         {
                  String [] pop=new String [tampob];
                 for(int i=0;i<pop.length;i++)
                 {
                         pop[i]=string_aleatorios(numero_bits);
-                                        
+                                       
                 }
-        return pop;     
+        return pop;    
         }
-        
+       
         public int[] decodificar(String[] pop)
         {
                 int []b= new int [pop.length];
@@ -53,46 +51,45 @@ public class Clonalg
             b[i]= numero;
                 }
                 return b;
-                
+               
         }
-        
+       
         public double[] Funcion_Objetivo(int[] adecode)
         {
                 double[]costo=new double[adecode.length];
                 for(int i=0;i<adecode.length;i++){
-                
+               
                                 costo[i]=(double)Math.pow(adecode[i],2);
-                        
+                       
                 }
                 return costo;
         }
         public int[][] recibeMatriz(int matriz[][]){
                 return matriz;
         }
-        
-        public Calendario[][] veriRestric(int[] trabajos, int[][] inst, int J, int M) {
+       
+        public int [][][] veriRestric(int[] trabajos, int[][] inst, int J, int M) {
             int j = 0;
             int time[] = new int[trabajos.length];
             int trab_actual[][] = new int[M][J];
-            int <Calendario>[][] calendario = new int <Calendario>[M][J];
+            Calendario[][] calendario = new  Calendario[M][J];
             boolean ban_J_inst[][] = new boolean[J][M];
-            for (int i = 0; i < M; i++) {
-                for (int j1 = 0; j1 < J; j1++) {
-                    trab_actual[i][j1] = 0;
-                    ban_J_inst[j1][i] = false;
-                   calendario[i][j1].setInicio(0);
-                    /*calendario[i][j1].setFin(0);
-                    calendario[i][j1].setTrab(0);
-                    // System.out.println(ban_J_inst[j1][i]);
-                    // System.out.println(trab_actual[i][j1]);
-                       System.out.println(calendario[i][j1].getInicio());
-                       System.out.println(calendario[i][j1].getFin());
-                       System.out.println(calendario[i][j1].getTrab());
-                       System.out.println();*/
-                }
-            }
+    		int [][][]calen=new int[3][4][3];
+    		for (int i = 0; i < M; i++) {
+    			for (int j1 = 0; j1 < J; j1++) {
+    				for (int k= 0; k < 3; k++) {
+    					
+    					trab_actual[i][j1] = 0;
+                        ban_J_inst[j1][i] = false;
+                        // System.out.println(ban_J_inst[j1][i]);
+                        // System.out.println(trab_actual[i][j1]);
+                        //   System.out.println();
+    				}
+    			}
+    		}
+
             int t;
-            
+           
             for (int i = 0; i < trabajos.length; i++) {
                 t = trabajos[i];
                
@@ -116,7 +113,7 @@ public class Clonalg
                 }
             }
            
-            return calendario;
+            return calen;
         }
 
         public int veri_ban_J(boolean ban[][], int M, int t) {
@@ -140,50 +137,8 @@ public class Clonalg
             }
             return actual;
         }
-        
-        public class Calendario{
-        	
-        	array
-        	/*public int inicio=0;
-        	public int fin=0;
-        	public int trab=0;
-        	
+       
 
-        	public Calendario(int inicio, int fin, int trab) {
-				super();
-				this.inicio = inicio;
-				this.fin = fin;
-				this.trab = trab;
-			}
-        	
-			public int getInicio() {
-				return inicio;
-			}
-
-			public void setInicio(int inicio) {
-				this.inicio = inicio;
-			}
-
-
-			public int getFin() {
-				return fin;
-			}
-
-
-			public void setFin(int fin) {
-				this.fin = fin;
-			}
-
-			public int getTrab() {
-				return trab;
-			}
-
-			public void setTrab(int trab) {
-				this.trab = trab;
-			}
-        */
-        }
-    
-
-        
+       
 }
+
