@@ -70,56 +70,119 @@ public class Clonalg
                 return matriz;
         }
         
-    public int [][] veriRestric(int [] trabajos, int [][]inst, int J, int M){
-        int j = 0;
-        int time[] = new int [trabajos.length];
-        int trab_actual[][] = new int [M][J];
-        boolean ban_J_inst [][]=new boolean [J][M];
-        for(int i = 0 ; i < M ; i++){
-                for(int j1 = 0; j1 < J; j1++){
-                trab_actual[i][j1]= 0;
-                ban_J_inst[j1][i]=false;
-                //System.out.println(ban_J_inst[j1][i]);
-                System.out.println(trab_actual[i][j1]);
-                //System.out.println();
+        public Calendario[][] veriRestric(int[] trabajos, int[][] inst, int J, int M) {
+            int j = 0;
+            int time[] = new int[trabajos.length];
+            int trab_actual[][] = new int[M][J];
+            int <Calendario>[][] calendario = new int <Calendario>[M][J];
+            boolean ban_J_inst[][] = new boolean[J][M];
+            for (int i = 0; i < M; i++) {
+                for (int j1 = 0; j1 < J; j1++) {
+                    trab_actual[i][j1] = 0;
+                    ban_J_inst[j1][i] = false;
+                   calendario[i][j1].setInicio(0);
+                    /*calendario[i][j1].setFin(0);
+                    calendario[i][j1].setTrab(0);
+                    // System.out.println(ban_J_inst[j1][i]);
+                    // System.out.println(trab_actual[i][j1]);
+                       System.out.println(calendario[i][j1].getInicio());
+                       System.out.println(calendario[i][j1].getFin());
+                       System.out.println(calendario[i][j1].getTrab());
+                       System.out.println();*/
                 }
-        }
-        
-        int t;
-        
-        for(int i=0 ;i < trabajos.length; i++){
-
+            }
+            int t;
+            
+            for (int i = 0; i < trabajos.length; i++) {
                 t = trabajos[i];
-                //veri_ban_J(ban_J,M,t);
-                //ban_J[t][]
-                //time[i]= inst[t][((j*2)+1)];   
-                //System.out.println(time[i]);
-                if(i % J == J-1){
-                        j=j+1;
-                    //System.out.println(i);
+               
+                int act = veri_ban_J(ban_J_inst, M, t);
+                //System.out.println(act);
+                //System.out.println();
+                //System.out.println(t);
+                if(act!=-1){
+                    trab_actual[act][t] = inst[t][((2 * act) + 1)];
+                    System.out.println(inst[t][(2 * act) + 1]);
+                    ban_J_inst[t][act] = true;
                 }
-                
+
+                time[i]= inst[t][((j*2)+1)];
+                 //System.out.println(time[i]);
+               
+                // System.out.println(trab_actual[t][act]);
+                if (i % J == J - 1) {
+                    j = j + 1;
+                    // System.out.println(i);
+                }
+            }
+           
+            return calendario;
+        }
+
+        public int veri_ban_J(boolean ban[][], int M, int t) {
+            int actual = 0;
+            for (int i = 0; i < M; i++) {
+                if (i != M) {
+
+                    if (ban[t][i] == true) {
+                        actual++;
+                    } else {
+                        return actual;
+                    }
+                } else {
+                    if(ban[t][i] == true){
+                        return actual=-1;
+                    }else{
+                        return actual;
+                    }
+                   
+                }
+            }
+            return actual;
         }
         
-           int [][] calendario=new int [0][0];
-           
-           return calendario;
-    }
-    
-   public int veri_ban_J(boolean ban[][],int M, int t){
-	   int actual=0;
-	   for(int i=0;i<M;i++) {
-		   if (ban[t][i]==true)
-		   {
-			   actual++;
-		   }
-		   else {
-				   return actual;
-			   	}
-	   }
-	   return actual;
-    }
-  
+        public class Calendario{
+        	
+        	array
+        	/*public int inicio=0;
+        	public int fin=0;
+        	public int trab=0;
+        	
+
+        	public Calendario(int inicio, int fin, int trab) {
+				super();
+				this.inicio = inicio;
+				this.fin = fin;
+				this.trab = trab;
+			}
+        	
+			public int getInicio() {
+				return inicio;
+			}
+
+			public void setInicio(int inicio) {
+				this.inicio = inicio;
+			}
+
+
+			public int getFin() {
+				return fin;
+			}
+
+
+			public void setFin(int fin) {
+				this.fin = fin;
+			}
+
+			public int getTrab() {
+				return trab;
+			}
+
+			public void setTrab(int trab) {
+				this.trab = trab;
+			}
+        */
+        }
     
 
         
