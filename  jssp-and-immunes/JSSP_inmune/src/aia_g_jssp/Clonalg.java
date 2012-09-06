@@ -2,7 +2,7 @@ package aia_g_jssp;
 public class Clonalg
 {
         /* configuraci√≥n del problema */
-        private double tama√±o_problema = 2.0;
+        private double tamano_problema = 2.0;
         // configuracion del algoritmo
         private int gen_max =100;
         private int tamano_pob =100;
@@ -69,18 +69,21 @@ public class Clonalg
         }
        
         public int [][][] veriRestric(int[] trabajos, int[][] inst, int J, int M) {
-            int j = 0;
+        	int maq;
+        	int trab_act;
             int time[] = new int[trabajos.length];
             int trab_actual[][] = new int[M][J];
-            Calendario[][] calendario = new  Calendario[M][J];
             boolean ban_J_inst[][] = new boolean[J][M];
     		int [][][]calen=new int[3][4][3];
+    		
+    		// InicializaciÛn de variables.
+    		
     		for (int i = 0; i < M; i++) {
     			for (int j1 = 0; j1 < J; j1++) {
+					trab_actual[i][j1] = 0;    // Indica cuando termina (el fin) del trabajo actual.
+                    ban_J_inst[j1][i] = false; // Indica la posiciÛn en la matriz de instancia.
     				for (int k= 0; k < 3; k++) {
-    					
-    					trab_actual[i][j1] = 0;
-                        ban_J_inst[j1][i] = false;
+    					calen[i][j1][k]=0;
                         // System.out.println(ban_J_inst[j1][i]);
                         // System.out.println(trab_actual[i][j1]);
                         //   System.out.println();
@@ -93,30 +96,35 @@ public class Clonalg
             for (int i = 0; i < trabajos.length; i++) {
                 t = trabajos[i];
                
-                int act = veri_ban_J(ban_J_inst, M, t);
+                int act = veri_ban_Oper(ban_J_inst, M, t);
                 //System.out.println(act);
                 //System.out.println();
                 //System.out.println(t);
                 if(act!=-1){
-                    trab_actual[act][t] = inst[t][((2 * act) + 1)];
-                    System.out.println(inst[t][(2 * act) + 1]);
-                    ban_J_inst[t][act] = true;
+
+                	trab_act= inst[t][((2 * act) + 1)];
+                	if(act==0){
+                		trab_actual[act][t] =trab_act;
+                	}
+                	else{
+                		if(){
+                			trab_actual[act][t] =trab_act;
+                		}
+
+                	}
+                	calen[i][j1][3]
+
+                	maq=inst[t][(2 * act) ];
+                	System.out.println(inst[t][(2 * act) ]);
+                	ban_J_inst[t][act] = true;
                 }
 
-                time[i]= inst[t][((j*2)+1)];
-                 //System.out.println(time[i]);
-               
-                // System.out.println(trab_actual[t][act]);
-                if (i % J == J - 1) {
-                    j = j + 1;
-                    // System.out.println(i);
-                }
             }
            
             return calen;
         }
 
-        public int veri_ban_J(boolean ban[][], int M, int t) {
+        public int veri_ban_Oper(boolean ban[][], int M, int t) {
             int actual = 0;
             for (int i = 0; i < M; i++) {
                 if (i != M) {
