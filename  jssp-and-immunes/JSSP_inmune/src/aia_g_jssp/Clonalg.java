@@ -1,8 +1,9 @@
-package aia_g_jssp;
+import java.lang.Math;
+
 public class Clonalg
 {
         /* configuración del problema */
-        private double tamano_problema = 2.0;
+        private double tamaño_problema = 2.0;
         // configuracion del algoritmo
         private int gen_max =100;
         private int tamano_pob =100;
@@ -69,58 +70,64 @@ public class Clonalg
         }
        
         public int [][][] veriRestric(int[] trabajos, int[][] inst, int J, int M) {
-        	int maq;
-        	int trab_act;
+            int maq;
+            int trab_act;
             int time[] = new int[trabajos.length];
             int trab_actual[][] = new int[M][J];
             boolean ban_J_inst[][] = new boolean[J][M];
-    		int [][][]calen=new int[3][4][3];
-    		
-    		// Inicializaci�n de variables.
-    		
-    		for (int i = 0; i < M; i++) {
-    			for (int j1 = 0; j1 < J; j1++) {
-					trab_actual[i][j1] = 0;    // Indica cuando termina (el fin) del trabajo actual.
-                    ban_J_inst[j1][i] = false; // Indica la posici�n en la matriz de instancia.
-    				for (int k= 0; k < 3; k++) {
-    					calen[i][j1][k]=0;
+            boolean ban_Calen[][] = new boolean[M][J];
+            int [][][]calen=new int[3][4][3];
+
+            // Inicialización de variables.
+
+            for (int i = 0; i < M; i++) {
+                for (int j1 = 0; j1 < J; j1++) {
+                    trab_actual[i][j1] = 0;    // Indica cuando termina (el fin) del trabajo actual.
+                    ban_J_inst[j1][i] = false; // Indica la posición en la matriz de instancia.
+                    ban_Calen[i][j1]=false;
+                    for (int k= 0; k < 3; k++) {
+                        calen[i][j1][k]=0;
                         // System.out.println(ban_J_inst[j1][i]);
                         // System.out.println(trab_actual[i][j1]);
                         //   System.out.println();
-    				}
-    			}
-    		}
+                    }
+                }
+            }
 
             int t;
-           
+
             for (int i = 0; i < trabajos.length; i++) {
                 t = trabajos[i];
-               
+
                 int act = veri_ban_Oper(ban_J_inst, M, t);
+                
                 //System.out.println(act);
                 //System.out.println();
                 //System.out.println(t);
                 if(act!=-1){
 
-                	trab_act= inst[t][((2 * act) + 1)];
-                	if(act==0){
-                		trab_actual[act][t] =trab_act;
-                	}
-                	else{
-                		if(){
-                			trab_actual[act][t] =trab_act;
-                		}
+                    trab_act= inst[t][((2 * act) + 1)];
+                    if(act==0){
+                        trab_actual[act][t] =trab_act;
+                    }
+                    else{
+                        if(){
+                            trab_actual[act][t] =trab_act;
+                        }
 
-                	}
-                	calen[i][j1][3]
+                    }
 
-                	maq=inst[t][(2 * act) ];
-                	System.out.println(inst[t][(2 * act) ]);
-                	ban_J_inst[t][act] = true;
+
+                    maq=inst[t][(2 * act) ];
+                    int actCal=veri_Calen(ban_Calen,J,maq);
+                    System.out.println(inst[t][(2 * act) ]);
+                    ban_Calen[maq][actCal] = true;
+                    ban_J_inst[t][act] = true;
+                    //calen[maq][][3]=t;
                 }
 
             }
-           
+
             return calen;
         }
 
@@ -140,11 +147,33 @@ public class Clonalg
                     }else{
                         return actual;
                     }
-                   
+
                 }
             }
             return actual;
         }
+        public int veri_Calen(boolean ban_Calen[][], int J, int maq) { 
+            int actual = 0;
+            for (int i = 0; i < J; i++) {
+                if (i != J) {
+
+                    if (ban_Calen[maq][i] == true) {
+                        actual++;
+                    } else {
+                        return actual;
+                    }
+                } else {
+                    if(ban_Calen[maq][i] == true){
+                        return actual=-1;
+                    }else{
+                        return actual;
+                    }
+
+                }
+            }
+            return actual;
+        }
+
        
 
        
