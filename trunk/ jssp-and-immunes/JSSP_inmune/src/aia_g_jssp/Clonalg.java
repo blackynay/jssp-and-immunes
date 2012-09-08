@@ -70,20 +70,23 @@ public class Clonalg
         }
        
         public int [][][] veriRestric(int[] trabajos, int[][] inst, int J, int M) {
+        	
+        	//Declaracion de variables
             int maq;
-            int trab_act;
-            int time[] = new int[trabajos.length];
+            int time_mach;
+            int t;
             int trab_actual[][] = new int[M][J];
             boolean ban_J_inst[][] = new boolean[J][M];
             boolean ban_Calen[][] = new boolean[M][J];
             int [][][]calen=new int[3][4][3];
+            
 
-            // Inicialización de variables.
+            // Inicializacion de variables.
 
             for (int i = 0; i < M; i++) {
                 for (int j1 = 0; j1 < J; j1++) {
                     trab_actual[i][j1] = 0;    // Indica cuando termina (el fin) del trabajo actual.
-                    ban_J_inst[j1][i] = false; // Indica la posición en la matriz de instancia.
+                    ban_J_inst[j1][i] = false; // Indica la posicion en la matriz de instancia.
                     ban_Calen[i][j1]=false;
                     for (int k= 0; k < 3; k++) {
                         calen[i][j1][k]=0;
@@ -94,37 +97,27 @@ public class Clonalg
                 }
             }
 
-            int t;
-
+    // Recorre la sarta para construir el calendario        
+            	
             for (int i = 0; i < trabajos.length; i++) {
-                t = trabajos[i];
+            	t = trabajos[i];
 
-                int act = veri_ban_Oper(ban_J_inst, M, t);
-                
-                //System.out.println(act);
-                //System.out.println();
-                //System.out.println(t);
-                if(act!=-1){
+            	int act = veri_ban_Oper(ban_J_inst, M, t);// Verifica las operaciones de la instancia
+        		int actCal = veri_Calen(ban_Calen,J,maq);
 
-                    trab_act= inst[t][((2 * act) + 1)];
-                    if(act==0){
-                        trab_actual[act][t] =trab_act;
-                    }
-                    else{
-                        if(){
-                            trab_actual[act][t] =trab_act;
-                        }
+            	//act = -1 Detona que el fin de la instancia para el trabajo.
+            	if(act!=-1){
 
-                    }
-
-
-                    maq=inst[t][(2 * act) ];
-                    int actCal=veri_Calen(ban_Calen,J,maq);
-                    System.out.println(inst[t][(2 * act) ]);
-                    ban_Calen[maq][actCal] = true;
-                    ban_J_inst[t][act] = true;
-                    //calen[maq][][3]=t;
-                }
+            		time_mach= inst[t][((2 * act) + 1)]; //tiempo del trabajo t 
+            		maq = inst[t][(2 * act) ];			//maq correspondiente al trabajo t (Es decir, operacion O[maq,t]con duracion time_mach)
+            		ban_J_inst[t][act] = true;			//Bandera de la instancia 
+            		
+            		
+            	}
+            	if(actCal!=-1){
+            		ban_Calen[maq][actCal] = true;		//Bandera del calendario
+            		
+            	}
 
             }
 
