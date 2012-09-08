@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import definitivo.*;
+
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.ChartFactory;
@@ -168,6 +170,7 @@ public class Resultados extends JFrame{
 	 
 	 public void regresar(){
 		 formulario2.setVisible(false);
+		 
 	 }
 	 
 	 
