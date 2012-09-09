@@ -70,8 +70,8 @@ public class Clonalg
         }
        
         public int [][][] veriRestric(int[] trabajos, int[][] inst, int J, int M) {
-        	
-        	//Declaracion de variables
+                
+                //Declaracion de variables
             int maq;
             int time_mach;
             int t;
@@ -98,32 +98,71 @@ public class Clonalg
             }
 
     // Recorre la sarta para construir el calendario        
-            	
+                
             for (int i = 0; i < trabajos.length; i++) {
             	t = trabajos[i];
 
             	int act = veri_ban_Oper(ban_J_inst, M, t);// Verifica las operaciones de la instancia
-        		int actCal = veri_Calen(ban_Calen,J,maq);
 
-            	//act = -1 Detona que el fin de la instancia para el trabajo.
+
+            	//act = -1 Denota el fin de la instancia para el trabajo.
             	if(act!=-1){
-
             		time_mach= inst[t][((2 * act) + 1)]; //tiempo del trabajo t 
-            		maq = inst[t][(2 * act) ];			//maq correspondiente al trabajo t (Es decir, operacion O[maq,t]con duracion time_mach)
-            		ban_J_inst[t][act] = true;			//Bandera de la instancia 
-            		
-            		
-            	}
-            	if(actCal!=-1){
-            		ban_Calen[maq][actCal] = true;		//Bandera del calendario
-            		
-            	}
+            		maq = inst[t][(2 * act) ];                      //maq correspondiente al trabajo t (Es decir, operacion O[maq,t]con duracion time_mach)
+            		ban_J_inst[t][act] = true;                      //Bandera de la instancia 
+            		int actCal = veri_Calen(ban_Calen,J,maq);
+            		if(actCal!=-1){
+            			ban_Calen[maq][actCal] = true;          //Bandera del calendario    
+            			if(actCal == 0){
+            				calen[maq][actCal][0] = 0;			//Inicializa la primera columna de la matriz de tiempos de inicio
+            				calen[maq][actCal][1] = time_mach;  //Inicializa la primera columna de la matriz de tiempos de finalizacion
+            				calen[maq][actCal][2] = t; 			//Inicializa el trabajo al que pertenece la operacion realizada
+            				boolean mach_full=is_mach_full(ban_Calen,M);
+            				/*for(int ii=0;ii<M;ii++)
+            				{
+            					if(trab_actual[ii][t]!=0)
+            					{
+            						trab_actual[ii][t]=time_mach; //No debe asignar de esta manera pues se debe tener en cuenta si las maquinas han sido
+            					}								  //asignadas en su totalidad
+            				}*/
+            			}
+            			else{
+            				calen[maq][actCal][2] = t; 
+            			}
 
+            		}
+
+            		//System.out.println(calen[maq][actCal][2]);
+            		//calen[maq][actCal][3]=t;
+            	}
+            }
+            for(int i=0;i<M;i++){
+            	for(int j=0;j<J;j++){
+            		if(j==3){
+            			System.out.print(calen[i][j][2]);
+            			System.out.println();
+
+            		}
+            			else{
+            				System.out.print(calen[i][j][2]);
+            			}
+            	}
+            }
+            return calen;
             }
 
-            return calen;
-        }
-
+            //return calen;
+        
+public boolean is_mach_full(boolean ban_Calen[][],int M){
+	boolean resp=true;
+	for(int i=0;i<M;i++){
+		if(ban_Calen[i][0]==false){
+			
+		}
+	}
+	return resp;
+}
+        
         public int veri_ban_Oper(boolean ban[][], int M, int t) {
             int actual = 0;
             for (int i = 0; i < M; i++) {
@@ -170,5 +209,3 @@ public class Clonalg
        
 
        
-}
-
