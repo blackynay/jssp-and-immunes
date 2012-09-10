@@ -113,9 +113,14 @@ public class Clonalg
                     int actCal = veri_Calen(ban_Calen,J,maq);
                     if(actCal!=-1){
                         calen[maq][actCal][2] = t;
-                        int Max_ti_maq=Max_dur_maq(trab_actual,J,maq);
+                        //int Max_ti_maq=Max_dur_maq(trab_actual,J,maq);
+                        int fin_time_mach=0;
+                        if(actCal!=0){
+                            fin_time_mach=calen[maq][actCal-1][1]; 
+                        }
+
                         
-                        if(trab_actual[2][t] == 0 && Max_ti_maq==0){
+                        if(trab_actual[2][t] == 0 && fin_time_mach==0){
                             // t,maq,time_mach representan los nuevos valores para trabajo,maquina,duracion.
                             calen[maq][actCal][0] = trab_actual[2][t];// tiempo inicio de la operacion
                             
@@ -127,11 +132,11 @@ public class Clonalg
                             calen[maq][actCal][2] = t;    // trabajo al que pertenece la operacion
                             
                         }else{
-                            if(Max_ti_maq > trab_actual[2][t]){//se verica el tiempo para la operacion con respecto al trabajo anterior
-                                calen[maq][actCal][0] = trab_actual[2][t];// tiempo inicio de la operacion
+                            if(fin_time_mach >= trab_actual[2][t]){//se verica el tiempo para la operacion con respecto al trabajo anterior
+                                calen[maq][actCal][0] = fin_time_mach ;// tiempo inicio de la operacion
                                 
                                 trab_actual[1][t] = maq;        //se verica el tiempo para la operacion con respecto a la maquina anterior
-                                trab_actual[2][t] = Max_ti_maq + time_mach;
+                                trab_actual[2][t] = fin_time_mach + time_mach;
                                 
                                 calen[maq][actCal][1] = trab_actual[2][t];// tiempo finaliz de la operacion
                                 calen[maq][actCal][2] = t;    // trabajo al que pertenece la operacion
@@ -167,19 +172,7 @@ public class Clonalg
             }
             return calen;
         }
-        public int Max_dur_maq(int [][]trab_actual,int J,int maq){
-            int max_time=0;
-            for(int i=0;i<J;i++){
-                if(trab_actual[1][i]==maq){
-                    if(trab_actual[2][i]>max_time){
-                        max_time=trab_actual[2][i];
-                    }
-                }
-            }
-            return max_time;
-        }
-
-              
+         
         public int veri_ban_Oper(boolean ban[][], int M, int t) {
             int actual = 0;
             for (int i = 0; i < M; i++) {
