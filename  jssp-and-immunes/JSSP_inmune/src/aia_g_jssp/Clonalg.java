@@ -1,3 +1,4 @@
+package aia_g_jssp;
 import java.lang.Math;
 
 public class Clonalg
@@ -78,7 +79,11 @@ public class Clonalg
             int trab_actual[][] = new int[3][J];
             boolean ban_J_inst[][] = new boolean[J][M];
             boolean ban_Calen[][] = new boolean[M][J];
+<<<<<<< .mine
+            int [][][]calen=new int[M][J][3];
+=======
             int [][][]calen=new int[3][4][3];
+>>>>>>> .r44
 
 
             // Inicializacion de variables.
@@ -100,11 +105,21 @@ public class Clonalg
             // Recorre la sarta para construir el calendario       
 
             for (int i = 0; i < trabajos.length; i++) {
+<<<<<<< .mine
                 t = trabajos[i];
-
+                System.out.print(t);
                 int act = veri_ban_Oper(ban_J_inst, M, t);// Verifica las operaciones de la instancia
+ 
+=======
+                t = trabajos[i];
+>>>>>>> .r44
 
+<<<<<<< .mine
+=======
+                int act = veri_ban_Oper(ban_J_inst, M, t);// Verifica las operaciones de la instancia
+>>>>>>> .r44
 
+<<<<<<< .mine
                 //act = -1 Denota el fin de la instancia para el trabajo.
                 if(act!=-1){
                     time_mach= inst[t][((2 * act) + 1)]; //tiempo del trabajo t
@@ -118,7 +133,10 @@ public class Clonalg
                         if(actCal!=0){
                             fin_time_mach=calen[maq][actCal-1][1]; 
                         }
+=======
+>>>>>>> .r44
 
+<<<<<<< .mine
                         
                         if(trab_actual[2][t] == 0 && fin_time_mach==0){
                             // t,maq,time_mach representan los nuevos valores para trabajo,maquina,duracion.
@@ -153,66 +171,51 @@ public class Clonalg
                             }
                         }
                     }
+=======
+                //act = -1 Denota el fin de la instancia para el trabajo.
+                if(act!=-1){
+                    time_mach= inst[t][((2 * act) + 1)]; //tiempo del trabajo t
+                    maq = inst[t][(2 * act) ];                      //maq correspondiente al trabajo t (Es decir, operacion O[maq,t]con duracion time_mach)
+                    ban_J_inst[t][act] = true;                      //Bandera de la instancia
+                    int actCal = veri_Calen(ban_Calen,J,maq);
+                    if(actCal!=-1){
+                        calen[maq][actCal][2] = t;
+                        //int Max_ti_maq=Max_dur_maq(trab_actual,J,maq);
+                        int fin_time_mach=0;
+                        if(actCal!=0){
+                            fin_time_mach=calen[maq][actCal-1][1]; 
+                        }
+>>>>>>> .r44
 
+<<<<<<< .mine
                     ban_Calen[maq][actCal] = true;          //Bandera del calendario   
                     //System.out.println(calen[maq][actCal][2]);
                     //calen[maq][actCal][3]=t;
                 }
-            }
-            for(int i=0;i<M;i++){
-                for(int j=0;j<J;j++){
-                    if(j==J-1){
-                        System.out.print(calen[i][j][2]);
-                        System.out.println();
-                    }
-                    else{
-                        System.out.print(calen[i][j][2]);
-                    }
-                }
-            }
-            return calen;
-        }
-         
-        public int veri_ban_Oper(boolean ban[][], int M, int t) {
-            int actual = 0;
-            for (int i = 0; i < M; i++) {
-                if (i != M) {
+=======
+                        
+                        if(trab_actual[2][t] == 0 && fin_time_mach==0){
+                            // t,maq,time_mach representan los nuevos valores para trabajo,maquina,duracion.
+                            calen[maq][actCal][0] = trab_actual[2][t];// tiempo inicio de la operacion
+                            
+                            trab_actual[0][t]=t;
+                            trab_actual[1][t]=maq;
+                            trab_actual[2][t]=time_mach;
+                            
+                            calen[maq][actCal][1] = trab_actual[2][t];// tiempo finaliz de la operacion
+                            calen[maq][actCal][2] = t;    // trabajo al que pertenece la operacion
+                            
+                        }else{
+                            if(fin_time_mach >= trab_actual[2][t]){//se verica el tiempo para la operacion con respecto al trabajo anterior
+                                calen[maq][actCal][0] = fin_time_mach ;// tiempo inicio de la operacion
+                                
+                                trab_actual[1][t] = maq;        //se verica el tiempo para la operacion con respecto a la maquina anterior
+                                trab_actual[2][t] = fin_time_mach + time_mach;
+                                
+                                calen[maq][actCal][1] = trab_actual[2][t];// tiempo finaliz de la operacion
+                                calen[maq][actCal][2] = t;    // trabajo al que pertenece la operacion
+                                
+                            }else{
+                                calen[maq][actCal][0] = trab_actual[2][t];// tiempo inicio de la operacion
+                                
 
-                    if (ban[t][i] == true) {
-                        actual++;
-                    } else {
-                        return actual;
-                    }
-                } else {
-                    if(ban[t][i] == true){
-                        return actual=-1;
-                    }else{
-                        return actual;
-                    }
-
-                }
-            }
-            return actual;
-        }
-        public int veri_Calen(boolean ban_Calen[][], int J, int maq) {
-            int actual = 0;
-            for (int i = 0; i < J; i++) {
-                if (i != J) {
-
-                    if (ban_Calen[maq][i] == true) {
-                        actual++;
-                    } else {
-                        return actual;
-                    }
-                } else {
-                    if(ban_Calen[maq][i] == true){
-                        return actual=-1;
-                    }else{
-                        return actual;
-                    }
-
-                }
-            }
-            return actual;
-        }
-}
