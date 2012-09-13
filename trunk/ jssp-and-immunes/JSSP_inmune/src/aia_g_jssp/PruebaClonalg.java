@@ -20,7 +20,12 @@ public class PruebaClonalg{
                                 //int[][]instancia={{0,10, 2, 25, 1, 4},{1, 5 ,2 ,25, 0, 8},{0, 23, 1, 13, 2, 7},{2, 8, 0 ,21, 1 ,5}}; //Instancia LN
                                 //int[][]instancia={{0,2, 1, 3, 2, 4},{2, 4 ,1 ,4, 0, 1},{1, 2, 2, 2, 0, 1},{0, 3, 2 ,3, 1 ,1}};
                                 
-                               algclon.veriRestric(trabajos, instancia,Tama[0],Tama[1]);
+                                
+                                
+                               int [][][] calendario=algclon.veriRestric(trabajos, instancia,Tama[0],Tama[1]);
+                               
+                               int Make_span=algclon.Makespan(calendario,Tama[0],Tama[1]);
+                               System.out.print(Make_span);
                                 for(int i=0;i<adecode.length;i++)
                                 {
                                         //int d=i+1;

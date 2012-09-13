@@ -192,6 +192,14 @@ public class Clonalg {
 		return calen;
 	}
 
+	public int Makespan(int calen[][][], int J, int M) {
+		int maximo = -99999;
+		for (int i = 0; i < M; i++) {
+			maximo = Math.max(maximo, calen[i][J - 1][1]);
+		}
+		return maximo;
+	}
+	
 	public int veri_ban_Oper(boolean ban[][], int M, int t) {
 		int actual = 0;
 		for (int i = 0; i < M; i++) {
