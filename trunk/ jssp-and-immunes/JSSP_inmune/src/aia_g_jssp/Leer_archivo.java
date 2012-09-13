@@ -13,7 +13,7 @@ public class Leer_archivo {
             // FileInputStream fstream = new
             // FileInputStream("D:\\Datos\\Dropbox\\Implementación de un algoritmo inmune artificial aplicado en el  área  de planificación de recursos\\Software encontrado\\Instancias de Job shop scheduling\\la01.txt");
             FileInputStream fstream = new FileInputStream(
-                    "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\la01.txt");
+                    "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\la10.txt");
             // Get the object of DataInputStream
 
             DataInputStream in = new DataInputStream(fstream);
@@ -85,7 +85,7 @@ public class Leer_archivo {
             // FileInputStream fstream = new
             // FileInputStream("D:\\Datos\\Dropbox\\Implementación de un algoritmo inmune artificial aplicado en el  área  de planificación de recursos\\Software encontrado\\Instancias de Job shop scheduling\\la01.txt");
             FileInputStream fstream = new FileInputStream(
-                    "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\la01.txt");
+                    "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\la10.txt");
             // Get the object of DataInputStream
 
             DataInputStream in = new DataInputStream(fstream);
