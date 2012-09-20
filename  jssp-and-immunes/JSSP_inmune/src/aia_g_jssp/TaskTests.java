@@ -38,7 +38,7 @@
  *
  */
 
-package org.jfree.data.gantt.junit;
+package aia_g_jssp;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

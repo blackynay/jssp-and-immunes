@@ -35,7 +35,8 @@ public class Clonalg {
 		String[] pop = new String[tampob];
 		for (int i = 0; i < pop.length; i++) {
 			pop[i] = string_aleatorios(numero_bits);
-
+			//System.out.print(pop[i]);
+			//System.out.println();
 		}
 		return pop;
 	}
@@ -47,7 +48,6 @@ public class Clonalg {
 			b[i] = numero;
 		}
 		return b;
-
 	}
 
 	public double[] Funcion_Objetivo(int[] adecode) {
@@ -59,11 +59,22 @@ public class Clonalg {
 		}
 		return costo;
 	}
-
-	public int[][] recibeMatriz(int matriz[][]) {
-		return matriz;
-	}
-
+	
+	public int[] Anticuerpo(int J,int M){
+		int cont=0, cont2=0;
+		for(int i = 0; i < M * J; i++){
+			cont++;
+			//System.out.println(cont2);
+			if(cont == 5)
+			{
+				cont2++;
+				cont=0;
+			}		
+		}
+		int [] Ab={0};
+			return Ab;
+	} 
+	
 	public int[][][] veriRestric(int[] trabajos, int[][] inst, int J, int M) {
 
 		// Declaracion de variables
