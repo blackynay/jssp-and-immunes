@@ -56,7 +56,7 @@ public class VistaDefinitiva extends JFrame {
         public VistaDefinitiva() {
 
 
-                super("Formulario Básico");
+                super("Formulario BÃ¡sico");
 
 
                 formulario = new JFrame();
@@ -86,7 +86,7 @@ public class VistaDefinitiva extends JFrame {
                 //BARRA MENU
                 menu = new JMenuBar();
                 menuArchivo = new JMenu( "Archivo" );
-                menuArchivo.setMnemonic('A'); 
+                menuArchivo.setMnemonic('A');
                 elemento_Abrir = new JMenuItem( "Abrir Instancias" );
                 elemento_Abrir.setMnemonic('I');
                 menuArchivo.add( elemento_Abrir );
@@ -98,12 +98,12 @@ public class VistaDefinitiva extends JFrame {
                 //crear Label///
                 lb_instancia = new JLabel("INSTANCIA");
                 lb_parametro =new JLabel("PARAMETROS DE LOS ALGORITMOS");
-                lb_tam_pobla = new JLabel("Tamaño de la Población");
-                lb_fac_mutac = new JLabel("Factor de Mutación");
-                lb_tas_clonac = new JLabel("Tasa de Clonación");
-                lb_tam_proble = new JLabel("Tamaño del Problema");
-                lb_tam_seccio = new JLabel("Tamaño de la Selección");
-                lb_num_rand_cel = new JLabel("Número Randomico de Células");
+                lb_tam_pobla = new JLabel("TamaÃ±o de la PoblaciÃ³n");
+                lb_fac_mutac = new JLabel("Factor de MutaciÃ³n");
+                lb_tas_clonac = new JLabel("Tasa de ClonaciÃ³n");
+                lb_tam_proble = new JLabel("TamaÃ±o del Problema");
+                lb_tam_seccio = new JLabel("TamaÃ±o de la SelecciÃ³n");
+                lb_num_rand_cel = new JLabel("NÃºmero Randomico de CÃ©lulas");
                 lb_umbral = new JLabel("Umbral alfa");
                 lb_clonal = new JLabel("CLONAL");
                 lb_grasp = new JLabel("GRASP");
@@ -118,7 +118,7 @@ public class VistaDefinitiva extends JFrame {
                 tf_num_rand_cel = new JTextField("2",5);
                 tf_umbral = new JTextField("0.5",5);
 
-                //crear área de texto para cargar la instancia
+                //crear Ã¡rea de texto para cargar la instancia
                 fichero = new JTextArea(21,31);
 
                 sbrText = new JScrollPane(fichero);
@@ -144,10 +144,10 @@ public class VistaDefinitiva extends JFrame {
                 lb_tas_clonac.setBounds(der, 160+mas, 200, 20);
                 lb_tam_proble.setBounds(der, 190+mas, 200, 20);
                 lb_tam_seccio.setBounds(der, 220+mas, 200, 20);
-                lb_num_rand_cel.setBounds(der, 250+mas, 200, 20); 
+                lb_num_rand_cel.setBounds(der, 250+mas, 200, 20);
                 lb_umbral.setBounds(der, 330+mas, 200, 20);
-                lb_clonal.setBounds(der, 70+mas, 300, 20); 
-                lb_grasp.setBounds(der, 300+mas, 300, 20); 
+                lb_clonal.setBounds(der, 70+mas, 300, 20);
+                lb_grasp.setBounds(der, 300+mas, 300, 20);
 
                 //Posicionar Campos de texto
                 tf_tam_pobla.setBounds(der+200, 100+mas, tam_camp, 20);
@@ -247,8 +247,8 @@ public class VistaDefinitiva extends JFrame {
 
 
                 //Boton Ejecutar
-                b_ejecutar.addActionListener(                         
-                                new ActionListener() { // clase interna anónima
+                b_ejecutar.addActionListener(                        
+                                new ActionListener() { // clase interna anÃ³nima
 
                                         public void actionPerformed( ActionEvent evento )
                                         {
@@ -261,50 +261,50 @@ public class VistaDefinitiva extends JFrame {
                                                 double tam_selec=0.0;
                                                 double fac_mutac=0.0;
 
-                                                if(fichero.getText().equals("")){ 
+                                                if(fichero.getText().equals("")){
                                                         //                         System.out.print("Seleccione una instancia");
                                                         JOptionPane.showMessageDialog(fichero, "Seleccione la Instancia");
                                                 }
                                                 else{
-                                                        try{ 
+                                                        try{
                                                                 tam_pobla = Integer.parseInt(tf_tam_pobla.getText());
                                                                 try{
                                                                         fac_mutac = Double.parseDouble(tf_fac_mutac.getText());
                                                                         try{
-                                                                                tas_clonal = Double.parseDouble(tf_tas_clonac.getText());                                   
+                                                                                tas_clonal = Double.parseDouble(tf_tas_clonac.getText());                                  
                                                                                 try{  
                                                                                         tam_proble = Integer.parseInt(tf_tam_proble.getText());
                                                                                         try{
-                                                                                                tam_selec = Double.parseDouble(tf_tam_selec.getText());           
+                                                                                                tam_selec = Double.parseDouble(tf_tam_selec.getText());          
                                                                                                 try{
                                                                                                         num_rand_cel = Integer.parseInt(tf_num_rand_cel.getText());
                                                                                                         try{
-                                                                                                                umbral = Double.parseDouble(tf_umbral.getText()); 
+                                                                                                                umbral = Double.parseDouble(tf_umbral.getText());
 
                                                                                                                 new Resultados();
                                                                                                                 //                                                        formulario.setVisible(false);
                                                                                                                 //                                                        dispose();
 
                                                                                                         } catch(NumberFormatException nfe)
-                                                                                                        { JOptionPane.showMessageDialog(tf_umbral,"Verifique que el campo Umbral no se encuentre vacío. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
+                                                                                                        { JOptionPane.showMessageDialog(tf_umbral,"Verifique que el campo Umbral no se encuentre vacÃ­o. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
                                                                                                         }    
                                                                                                 } catch(NumberFormatException nfe)
-                                                                                                { JOptionPane.showMessageDialog(tf_num_rand_cel,"Verifique que el campo Número Ranomíco de Células no se encuentre vacío. \n \n El campo solo admite valores enteros");
+                                                                                                { JOptionPane.showMessageDialog(tf_num_rand_cel,"Verifique que el campo NÃºmero RanomÃ­co de CÃ©lulas no se encuentre vacÃ­o. \n \n El campo solo admite valores enteros");
                                                                                                 }    
                                                                                         }catch(NumberFormatException nfe)
-                                                                                        {JOptionPane.showMessageDialog(tf_tam_selec,"Verifique que el campo Tamaño de la Selección no se encuentre vacío. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
+                                                                                        {JOptionPane.showMessageDialog(tf_tam_selec,"Verifique que el campo TamaÃ±o de la SelecciÃ³n no se encuentre vacÃ­o. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
                                                                                         }
                                                                                 }catch(NumberFormatException nfe)
-                                                                                {JOptionPane.showMessageDialog(tf_tam_proble,"Verifique que el campo Tamaño del Problema no se encuentre vacío. \n \n El campo solo admite valores enteros");
+                                                                                {JOptionPane.showMessageDialog(tf_tam_proble,"Verifique que el campo TamaÃ±o del Problema no se encuentre vacÃ­o. \n \n El campo solo admite valores enteros");
                                                                                 }                                                  
                                                                         } catch(NumberFormatException nfe)
-                                                                        {JOptionPane.showMessageDialog(tf_tas_clonac,"Verifique que el campo Tasa de Clonación no se encuentre vacío. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
+                                                                        {JOptionPane.showMessageDialog(tf_tas_clonac,"Verifique que el campo Tasa de ClonaciÃ³n no se encuentre vacÃ­o. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
                                                                         }            
                                                                 }catch(NumberFormatException nfe)
-                                                                { JOptionPane.showMessageDialog(tf_fac_mutac,"Verifique que el campo Factor de Mutación no se encuentre vacío. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
+                                                                { JOptionPane.showMessageDialog(tf_fac_mutac,"Verifique que el campo Factor de MutaciÃ³n no se encuentre vacÃ­o. \n \n El campo solo admite valores enteros \n o decimales separados por punto (1.3)");
                                                                 }
                                                         }  catch(NumberFormatException nfe)
-                                                        {JOptionPane.showMessageDialog(tf_tam_pobla,"Verifique que el campo Tamaño de la Población no se encuentre vacío. \n \n El campo solo admite valores enteros");
+                                                        {JOptionPane.showMessageDialog(tf_tam_pobla,"Verifique que el campo TamaÃ±o de la PoblaciÃ³n no se encuentre vacÃ­o. \n \n El campo solo admite valores enteros");
                                                         }
                                                 }
                                                 /*
@@ -320,9 +320,9 @@ public class VistaDefinitiva extends JFrame {
                                 );//Fin Boton Ejecutar
 
 
-                //Ventana DIALOGO de Validación
+                //Ventana DIALOGO de ValidaciÃ³n
                 JButton ok = new JButton("OK");
-                JLabel advertencia = new JLabel("Verifique que todos los campos contengan solo números");
+                JLabel advertencia = new JLabel("Verifique que todos los campos contengan solo nÃºmeros");
                 dialogo = new JDialog();
                 dialogo.setTitle("Error");
                 dialogo.setLayout(new FlowLayout());
@@ -366,20 +366,20 @@ public class VistaDefinitiva extends JFrame {
         {
                 boolean valido = false;
                 int prueba[][] = new int[0][0];
-                // mostrar cuadro de diálogo para que el usuario pueda seleccionar el archivo
+                // mostrar cuadro de diÃ¡logo para que el usuario pueda seleccionar el archivo
                 JFileChooser selectorArchivo = new JFileChooser();
                 selectorArchivo.setFileSelectionMode( JFileChooser.FILES_ONLY );
 
                 int resultado = selectorArchivo.showOpenDialog( this );
 
-                // si el usuario hizo clic en el botón Cancelar del cuadro de diálogo, regresar
+                // si el usuario hizo clic en el botÃ³n Cancelar del cuadro de diÃ¡logo, regresar
                 if ( resultado == JFileChooser.CANCEL_OPTION ){
                         valido = false;
                 }
                 else{
                         // obtener el archivo seleccionado
                         File archivo = null;
-                        archivo = selectorArchivo.getSelectedFile(); 
+                        archivo = selectorArchivo.getSelectedFile();
 
                         FileReader fr = null;
 
@@ -388,11 +388,11 @@ public class VistaDefinitiva extends JFrame {
                         } catch (FileNotFoundException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
-                        }           
+                        }          
                         BufferedReader br = new BufferedReader(fr);
                         prueba=Convertir(br);
 
-                        //         Reader linea1; 
+                        //         Reader linea1;
                         valido = true;
                 }
                 if(valido){
@@ -426,14 +426,14 @@ public class VistaDefinitiva extends JFrame {
                                 String[] dato = fila.split(" ");
                                 for (int i=0; i < dato.length  ; i++){
                                         instancia[a][i] = dato[i];
-                                        prueba[a][i]= Integer.parseInt(instancia[a][i]); 
+                                        prueba[a][i]= Integer.parseInt(instancia[a][i]);
                                         fichero.append(instancia [a][i]+" ");
                                         System.out.print(prueba[a][i]+" ");
                                 }
                                 fichero.append(newline);
                                 System.out.println();
                                 a=a+1;
-                        }   
+                        }  
                         int []vector= crearVector(prueba,t1,t2);
                         return prueba;
                 } catch (IOException e) {
@@ -448,9 +448,9 @@ public class VistaDefinitiva extends JFrame {
                 // Open the file that is the first
                 // command line parameter
                 // FileInputStream fstream = new
-                // FileInputStream("D:\\Datos\\Dropbox\\ImplementaciÃ³n de un algoritmo inmune artificial aplicado en el  Ã¡rea  de planificaciÃ³n de recursos\\Software encontrado\\Instancias de Job shop scheduling\\la01.txt");
+                // FileInputStream("D:\\Datos\\Dropbox\\ImplementaciÃƒÂ³n de un algoritmo inmune artificial aplicado en el  ÃƒÂ¡rea  de planificaciÃƒÂ³n de recursos\\Software encontrado\\Instancias de Job shop scheduling\\la01.txt");
 
-
+            	fichero.setText(" ");
                 String strLine;
                 // Read File Line By Line
 
@@ -495,8 +495,10 @@ public class VistaDefinitiva extends JFrame {
                 for (int j1 = 0; j1 < J; j1++) {
                     for (int i1 = 0; i1 < M * 2; i1++) {
                         vector[j1][i1] = Integer.parseInt((String) datos[j1][i1]);
-                        // System.out.println(vector[j1][i1]);
+                         //System.out.println(vector[j1][i1]);
+                        fichero.append(vector[j1][i1]+" ");
                     }
+                    fichero.append(newline);
                 }
 
                 // Close the input stream
@@ -508,7 +510,7 @@ public class VistaDefinitiva extends JFrame {
             }
             return null;
         }
-        
+       
         public int[] Tamano_inst(BufferedReader br) {
 
             try {
@@ -548,7 +550,7 @@ public class VistaDefinitiva extends JFrame {
             return null;
 
         }
-        
+       
         public int [] crearVector(int [][]matriz,int t1,int t2)
         {
                 int [] vector=new int [1+(t1*t2)];
