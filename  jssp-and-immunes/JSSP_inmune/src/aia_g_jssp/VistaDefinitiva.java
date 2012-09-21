@@ -98,12 +98,12 @@ public class VistaDefinitiva extends JFrame {
                 //crear Label///
                 lb_instancia = new JLabel("INSTANCIA");
                 lb_parametro =new JLabel("PARAMETROS DE LOS ALGORITMOS");
-                lb_tam_pobla = new JLabel("Tama帽o de la Poblaci贸n");
-                lb_fac_mutac = new JLabel("Factor de Mutaci贸n");
-                lb_tas_clonac = new JLabel("Tasa de Clonaci贸n");
-                lb_tam_proble = new JLabel("Tama帽o del Problema");
-                lb_tam_seccio = new JLabel("Tama帽o de la Selecci贸n");
-                lb_num_rand_cel = new JLabel("N煤mero Randomico de C茅lulas");
+                lb_tam_pobla = new JLabel("Tama駉 de la Poblaci髇");
+                lb_fac_mutac = new JLabel("Factor de Mutaci髇");
+                lb_tas_clonac = new JLabel("Tasa de Clonaci髇");
+                lb_tam_proble = new JLabel("Tama駉 del Problema");
+                lb_tam_seccio = new JLabel("Tama駉 de la Selecci髇");
+                lb_num_rand_cel = new JLabel("N鷐ero Randomico de Celulas");
                 lb_umbral = new JLabel("Umbral alfa");
                 lb_clonal = new JLabel("CLONAL");
                 lb_grasp = new JLabel("GRASP");

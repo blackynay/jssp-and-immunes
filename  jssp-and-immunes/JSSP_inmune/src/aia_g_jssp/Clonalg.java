@@ -20,7 +20,7 @@ public class Clonalg {
 		return Math.floor(tamano_pob * factor_clonac);
 	}
 
-	public String string_aleatorios(double numero_bits) {
+	public String sarta_aleatorios(double numero_bits) {
 		String s = "";
 		for (int i = 0; i < numero_bits; i++) {
 			if (Math.random() < 0.5)
@@ -34,7 +34,7 @@ public class Clonalg {
 	public String[] Crear_Poblacion(double numero_bits, int tampob) {
 		String[] pop = new String[tampob];
 		for (int i = 0; i < pop.length; i++) {
-			pop[i] = string_aleatorios(numero_bits);
+			pop[i] = sarta_aleatorios(numero_bits);
 			//System.out.print(pop[i]);
 			//System.out.println();
 		}
@@ -46,9 +46,11 @@ public class Clonalg {
 		for (int i = 0; i < pop.length; i++) {
 			int numero = Integer.parseInt(pop[i], 2);
 			b[i] = numero;
+			System.out.println(b[i]);
 		}
 		return b;
 	}
+	
 
 	public double[] Funcion_Objetivo(int[] adecode) {
 		double[] costo = new double[adecode.length];
@@ -59,6 +61,8 @@ public class Clonalg {
 		}
 		return costo;
 	}
+	
+	
 	
 	public int[] Anticuerpo(int J,int M){
 		int cont=0, cont2=0;
