@@ -29,14 +29,33 @@ public class Sarta {
                 return s;
         }
 
-        public int[] decodificar(String[] pop, int J, int M, int cant_bits) {
-                int[] b = new int[J * M * cant_bits];
-                for (int i = 0; i < pop.length; i++) {
-                        int numero = Integer.parseInt(pop[i], 2);
-                        b[i] = numero;
-                }
-                return b;
-        }
+	public int[] decodificar(String[] pop, int J, int M, int cant_bits) {
+		int[] b = new int[J * M];
+		String ind[] = new String[J * M * cant_bits];
+
+		for (int i = 0; i < pop.length; i++) {
+			char[] individuo = pop[i].toCharArray();
+
+			for (int k = 0; k < individuo.length; k++) {
+				ind[k] = Character.toString(individuo[k]);
+				System.out.print(ind[k]);
+			}
+			int con = 0;
+			String temp = "";
+			for (int j = 0; j < ind.length; j++) {
+				if (con < 5) {
+					temp = temp + ind[j];
+				} else {
+					con = 0;
+					int numero = Integer.parseInt(temp, 10);
+					b[i] = numero;
+					System.out.print(b[i] + "  ");
+				}
+			}
+			System.out.println();
+		}
+		return b;
+	}
 
         public int[] Anticuerpo(int J, int M) {
                 int cont = 0, cont2 = 0;
@@ -45,7 +64,7 @@ public class Sarta {
                         cont++;
                         Ab[i] = cont2;
                         // System.out.println(Ab[i]);
-                        if (cont == 5) {
+                        if (cont == M) {
                                 cont2++;
                                 cont = 0;
                         }
@@ -69,15 +88,17 @@ public class Sarta {
                 int cont = 0;
                 while (itr.hasNext()) {
                         vector[cont] = (Integer) itr.next();
-                        System.out.print(vector[cont]);
+                        //System.out.print(vector[cont]);
                         cont = cont + 1;
                 }
-                System.out.println();
+                //System.out.println();
                 return vector;
         }
 
-    public int[] ToBinary2(int[] Abb, int J, int M, int cant_bits) {
+    public String ToBinary2(int[] Abb, int J, int M, int cant_bits) {
         String[] AB = new String[J * M];
+        String numCadena="";
+        String Acumulador="";
         int[] vect_binario = new int[J * M * cant_bits];
         int[] temp = new int[cant_bits];
         int cont = 0;
@@ -90,11 +111,11 @@ public class Sarta {
             AB[i] = Integer.toString(Abb[i]);
             String bin = Integer.toString(Integer.parseInt(AB[i], 10), 2);
             char[] carac = bin.toCharArray();
-            
+          
             for (int k = 0; k < cant_bits; k++) {
                 temp[k] = 0;
             }
-            
+          
             int cor = cant_bits - carac.length;
             cont = 0;
             for (int j = 0; j < carac.length; j++) {
@@ -105,57 +126,19 @@ public class Sarta {
             for (int j = cant_bits - 1; j >= 0; j--) {
                 vect_binario[c] = temp[j];
                 // System.out.print(vect_binario[c]);
-                System.out.print(temp[j] + " ");
+                numCadena = Integer.toString(vect_binario[c]);
+                Acumulador = Acumulador + numCadena;
+                //System.out.print(temp[j] + " ");
                 c = c + 1;
             }
-            System.out.print(Abb[i]);
-            System.out.println();
-            
+           // System.out.print(Abb[i]);
+           // System.out.println();
+          
         }
-        return vect_binario;
+       // System.out.println(Acumulador);
+       // return vect_binario;
+        return Acumulador;
     }
-        
-        public int[] ToBinary(int[] Ab, int J, int M, int cant_bits) {
-                int[] vect_binario = new int[J * M * cant_bits];
-                int[] temp = new int[cant_bits];
-                int c = 0;
-                int cont = 0;
-                for (int i = 0; i < cant_bits; i++) {
-                        temp[i] = 0;
-                }
-                for (int i = 0; i < J * M * cant_bits; i++) {
-                        vect_binario[i] = 0;
-                }
-                for (int i = 0; i < J * M; i++) {
-                    cont=0;
-                        while (cont < cant_bits) {
-                                int res = Ab[i] % 2;
-                                if (res == 0) {
-                                        temp[cont] = res;
-                                        cont++;
-                                        int coc = Ab[i] / 2;
-                                        //System.out.println(coc);
-                                        if (coc == 0 || coc==1) {
-                                                cont = 9999;
-                                        }
-                                } else if (res == 1) {
-                                        cont++;
-                                        temp[cont] = res;
-                                        int coc = Ab[i] - 1 / 2;
-                                        //System.out.println(coc);
-                                        if (coc == 1) {
-                                                cont = 9999;
-                                        }
-                                } //System.out.println(res);
-                        }
-
-                        for (int j = cant_bits - 1; j >= 0; j--) {
-                                vect_binario[c] = temp[j];
-                                System.out.print(vect_binario[c]);
-                                c = c + 1;
-                        } System.out.println();
-                }
-
-                return vect_binario;
-        }
+      
+    
 }
