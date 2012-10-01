@@ -208,10 +208,11 @@ public class Clonalg {
 	}
 
 	public int Makespan(int calen[][][], int J, int M) {
-		int maximo = -99999;
+		int maximo = -9999999;
 		for (int i = 0; i < M; i++) {
 			maximo = Math.max(maximo, calen[i][J - 1][1]);
 		}
+		System.out.println(maximo);
 		return maximo;
 	}
 	
