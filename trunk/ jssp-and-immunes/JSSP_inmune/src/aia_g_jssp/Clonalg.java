@@ -12,7 +12,7 @@ public class Clonalg {
 	private int numero_alet = 2;
 	private double factor_mutacion = -2.5;
 
-	public double calcular_tasa_mutacion( /* falta anticuerpo */) {
+	public double calcular_tasa_mutacion(int afinidad) {
 		return factor_mutacion;
 	}
 
@@ -20,56 +20,12 @@ public class Clonalg {
 		return Math.floor(tamano_pob * factor_clonac);
 	}
 
-	public String sarta_aleatorios(double numero_bits) {
-		String s = "";
-		for (int i = 0; i < numero_bits; i++) {
-			if (Math.random() < 0.5)
-				s = s + "1";
-			else
-				s = s + "0";
-		}
-		return s;
-	}
-
-	public String[] Crear_Poblacion(double numero_bits, int tampob) {
-		String[] pop = new String[tampob];
-		for (int i = 0; i < pop.length; i++) {
-			pop[i] = sarta_aleatorios(numero_bits);
-			//System.out.print(pop[i]);
-			//System.out.println();
-		}
-		return pop;
-	}
-
-	public int[] decodificar(String[] pop) {
-		int[] b = new int[pop.length];
-		for (int i = 0; i < pop.length; i++) {
-			int numero = Integer.parseInt(pop[i], 2);
-			b[i] = numero;
-			System.out.println(b[i]);
-		}
-		return b;
-	}
-	
-
-	public double[] Funcion_Objetivo(int[] adecode) {
-		double[] costo = new double[adecode.length];
-		for (int i = 0; i < adecode.length; i++) {
-
-			costo[i] = (double) Math.pow(adecode[i], 2);
-
-		}
-		return costo;
-	}
-	
-	
-	
 	public int[] Anticuerpo(int J,int M){
 		int cont=0, cont2=0;
 		for(int i = 0; i < M * J; i++){
 			cont++;
 			//System.out.println(cont2);
-			if(cont == 5)
+			if(cont == M)
 			{
 				cont2++;
 				cont=0;
@@ -232,7 +188,6 @@ public class Clonalg {
 				} else {
 					return actual;
 				}
-
 			}
 		}
 		return actual;
@@ -254,7 +209,6 @@ public class Clonalg {
 				} else {
 					return actual;
 				}
-
 			}
 		}
 		return actual;
