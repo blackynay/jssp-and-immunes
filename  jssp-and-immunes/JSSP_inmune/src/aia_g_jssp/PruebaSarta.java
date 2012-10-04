@@ -27,7 +27,6 @@ public class PruebaSarta {
                     int[] Anticuerpo = S1.decodificar(pob[i], Tama[0], Tama[1], resp);// Vector entero de anticuerpo
                     int [][][] calendario=algclon.veriRestric(Anticuerpo, instancia,Tama[0],Tama[1]);
                     Make_span[i]=algclon.Makespan(calendario,Tama[0],Tama[1]);
-
             }
             ArrayIndexComparator comparator = new ArrayIndexComparator(Make_span);
             Integer[] indexes = comparator.createIndexArray();
