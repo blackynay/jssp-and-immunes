@@ -1,6 +1,7 @@
 package aia_g_jssp;
 
 import java.lang.Math;
+import java.util.Random;
 
 public class Clonalg {
         /* configuración del problema */
@@ -12,12 +13,12 @@ public class Clonalg {
         private int numero_alet = 2;
         private double factor_mutacion = -2.5;
 
-        public double calcular_tasa_mutacion(int afinidad) {
-                return factor_mutacion;
+        public double calcular_tasa_mutacion(int afinidad,	int factor_mutacion) {
+                return Math.exp(factor_mutacion * afinidad);
         }
 
-        public double num_clones(double tamano_pob, double factor_clonac) {
-                return Math.floor(tamano_pob * factor_clonac);
+        public int num_clones(double tamano_pob, double factor_clonac) {
+                return (int)Math.floor(tamano_pob * factor_clonac);
         }
         
         public double [] Calcular_afinidad(int [] Make_span){
@@ -27,7 +28,7 @@ public class Clonalg {
              max_costo=Math.max(max_costo,Make_span[i]);
              min_costo=Math.min(min_costo, Make_span[i]);
             }
-            double range=-max_costo+min_costo;
+            double range=max_costo-min_costo;
             double[] afinidad=new double[Make_span.length];
             for(int i = 0; i < Make_span.length; i++){
             if (range == 0.0){
@@ -40,20 +41,20 @@ public class Clonalg {
         }
             return afinidad;
         }
-
-        public int[] Anticuerpo(int J,int M){
-                int cont=0, cont2=0;
-                for(int i = 0; i < M * J; i++){
-                        cont++;
-                        //System.out.println(cont2);
-                        if(cont == M)
-                        {
-                                cont2++;
-                                cont=0;
-                        }              
-                }
-                int [] Ab={0};
-                        return Ab;
+        
+        public int[] mutation(int Ab[],double Tasa_mutacion,int J,int M){
+        	Random randomGenerator = new Random();
+        	for(int i=0;i<Ab.length;i++){
+        		if(Math.random() < Tasa_mutacion){
+        			int randomInt = randomGenerator.nextInt(100);
+        		}
+        	}
+        	return Ab;
+        }
+        public String[] clonar_e_hipermutar(String pop, double factor_clonacion){
+        	int num_clones=num_clones(pop.length(),factor_clonacion);
+        	String [] clones=new String[num_clones];
+        	return clones;
         }
        
         public int[][][] veriRestric(int[] trabajos, int[][] inst, int J, int M) {
