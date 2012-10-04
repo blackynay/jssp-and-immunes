@@ -4,9 +4,6 @@ public class PruebaClonalg{
         {
                 int tampob=100;
                 Clonalg algclon=new Clonalg();
-                                String [] a=algclon.Crear_Poblacion(16.0,tampob);
-                                int [] adecode=algclon.decodificar(a);
-                                double [] costo=algclon.Funcion_Objetivo(adecode);
                                 algclon.Anticuerpo(10, 5);
                                 
                                 //int[] trabajos={0,1,3,2,2,1,3,0,0,1,3,2}; //Instancia LN
@@ -32,14 +29,6 @@ public class PruebaClonalg{
                                
                                int Make_span=algclon.Makespan(calendario,Tama[0],Tama[1]);
                                System.out.print(Make_span);
-                                for(int i=0;i<adecode.length;i++)
-                                {
-                                        //int d=i+1;
-                                        //boolean p=((i+1)%4==0);
-                                        //System.out.println(p);
-                                        //System.out.println(a[i]);
-                                        //System.out.println(adecode[i]);
-                                        //System.out.println(costo[i]);
-                                }
+
         }
 }
