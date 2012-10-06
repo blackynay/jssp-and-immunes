@@ -45,7 +45,7 @@ public class Sarta {
 					con = 0;
 					int numero = Integer.parseInt(temp, 2);
 					b[cont] = numero;
-					System.out.print(b[cont]);
+					//System.out.print(b[cont]);
 					temp = "";
 					cont++;
 				}
