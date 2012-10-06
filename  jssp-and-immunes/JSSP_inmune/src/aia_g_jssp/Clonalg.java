@@ -3,7 +3,7 @@ package aia_g_jssp;
 import java.lang.Math;
 import java.util.Random;
 
-public class Clonalg {
+public class Clonalg extends Sarta {
         /* configuración del problema */
         private double tamaño_problema = 2.0;
         // configuracion del algoritmo
@@ -13,11 +13,11 @@ public class Clonalg {
         private int numero_alet = 2;
         private double factor_mutacion = -2.5;
 
-        public double calcular_tasa_mutacion(int afinidad,	int factor_mutacion) {
+        public double calcular_tasa_mutacion(double afinidad,	double factor_mutacion) {
                 return Math.exp(factor_mutacion * afinidad);
         }
 
-        public int num_clones(double tamano_pob, double factor_clonac) {
+        public int num_clones(int tamano_pob, double factor_clonac) {
                 return (int)Math.floor(tamano_pob * factor_clonac);
         }
         
@@ -37,23 +37,38 @@ public class Clonalg {
             	  else{
             		  afinidad[i] = 1.0-(Make_span[i]/range);
             }
-            System.out.println(afinidad[i]);
+            //System.out.println(afinidad[i]);
         }
             return afinidad;
         }
         
-        public int[] mutation(int Ab[],double Tasa_mutacion,int J,int M){
+        public int[] mutation(int Ab[],double Tasa_mutacion){
         	Random randomGenerator = new Random();
+			int randomInt1;
+			int randomInt2;
+			int temp;
         	for(int i=0;i<Ab.length;i++){
         		if(Math.random() < Tasa_mutacion){
-        			int randomInt = randomGenerator.nextInt(100);
+        			randomInt1 = randomGenerator.nextInt(Ab.length);
+        			randomInt2 = randomGenerator.nextInt(Ab.length);
+        			temp = Ab[randomInt1];
+        			Ab[randomInt1] = Ab[randomInt2];
+        			Ab[randomInt2] = temp;
         		}
         	}
         	return Ab;
         }
-        public String[] clonar_e_hipermutar(String pop, double factor_clonacion){
-        	int num_clones=num_clones(pop.length(),factor_clonacion);
-        	String [] clones=new String[num_clones];
+        public int[][] clonar_e_hipermutar(int[]Ab, double factor_clonacion,int poblacion, double Afinidad,double factor_mutacion){
+        	int num_clones = num_clones(poblacion, factor_clonacion);
+        	int [][] clones = new int[num_clones][Ab.length];
+        	int [] clon = new int [Ab.length];
+        	double m_rate=calcular_tasa_mutacion(Afinidad,factor_mutacion);
+        	for(int i = 0;i < num_clones; i++){
+            		clon = mutation(Ab,m_rate);
+                for(int j = 0;j < Ab.length; j++){
+                		clones[i][j] = clon[j];	
+            	}
+        	}
         	return clones;
         }
        
@@ -175,10 +190,10 @@ public class Clonalg {
                 for (int i = 0; i < M; i++) {
                         for (int j = 0; j < J; j++) {
                                 if (j == J - 1) {
-                                        System.out.print("  " + calen[i][j][1]);
+                                        //System.out.print("  " + calen[i][j][1]);
                                         System.out.println();
                                 } else {
-                                        System.out.print("  " + calen[i][j][1]);
+                                        //System.out.print("  " + calen[i][j][1]);
                                 }
                         }
                 }
@@ -190,7 +205,7 @@ public class Clonalg {
                 for (int i = 0; i < M; i++) {
                         maximo = Math.max(maximo, calen[i][J - 1][1]);
                 }
-                System.out.println(maximo);
+                //System.out.println(maximo);
                 return maximo;
         }
        
