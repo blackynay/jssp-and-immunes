@@ -36,14 +36,12 @@ public class ArrayIndexComparator implements Comparator<Integer> {
 		Integer[] countries = { 6, 5, 2, 7, 2, 6, 7, 9 };
 		ArrayIndexComparator comparator = new ArrayIndexComparator(countries);
 		Integer[] indexes = comparator.createIndexArray();
-		/*for (Integer i = 0; i < indexes.length; i++) {
-			System.out.print(indexes[i]);
-		}
-		System.out.println();
-		Arrays.sort(indexes, comparator);
-		for (Integer i = 0; i < indexes.length; i++) {
-			System.out.print(indexes[i]);
-		}
-		System.out.println();*/
+		/*
+		 * for (Integer i = 0; i < indexes.length; i++) {
+		 * System.out.print(indexes[i]); } System.out.println();
+		 * Arrays.sort(indexes, comparator); for (Integer i = 0; i <
+		 * indexes.length; i++) { System.out.print(indexes[i]); }
+		 * System.out.println();
+		 */
 	}
 }
