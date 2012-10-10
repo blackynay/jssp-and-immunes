@@ -6,8 +6,8 @@ import java.util.Random;
 public class Clonalg extends Sarta {
 
 	public double calcular_tasa_mutacion(double afinidad, double factor_mutacion) {
-//		return ((Math.exp(afinidad * -factor_mutacion)));
-		return (1/factor_mutacion)*(1/(Math.exp(afinidad)));
+		return ((Math.exp(afinidad * factor_mutacion)));
+		//return (1/factor_mutacion)*(1/(Math.exp(afinidad)));
 	}
 
 	public int num_clones(int tamano_pob, double factor_clonac) {
@@ -29,7 +29,7 @@ public class Clonalg extends Sarta {
 			} else {
 				afinidad[i] = 1.0 - (Make_span[i] / range);
 			}
-			// System.out.println(afinidad[i]);
+			 //System.out.println(afinidad[i]);
 		}
 		return afinidad;
 	}

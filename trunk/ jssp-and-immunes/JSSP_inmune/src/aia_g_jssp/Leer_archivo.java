@@ -4,16 +4,17 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 public class Leer_archivo {
-
+	String instan="la01.txt";
     public int[][] Leer_instancia() {
-
+        
         try {
             // Open the file that is the first
             // command line parameter
             // FileInputStream fstream = new
             // FileInputStream("D:\\Datos\\Dropbox\\Implementación de un algoritmo inmune artificial aplicado en el  área  de planificación de recursos\\Software encontrado\\Instancias de Job shop scheduling\\la01.txt");
-            FileInputStream fstream = new FileInputStream(
-                    "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\la10.txt");
+
+        	FileInputStream fstream = new FileInputStream(
+                    "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\"+instan);
             // Get the object of DataInputStream
 
             DataInputStream in = new DataInputStream(fstream);
@@ -85,7 +86,7 @@ public class Leer_archivo {
             // FileInputStream fstream = new
             // FileInputStream("D:\\Datos\\Dropbox\\Implementación de un algoritmo inmune artificial aplicado en el  área  de planificación de recursos\\Software encontrado\\Instancias de Job shop scheduling\\la01.txt");
             FileInputStream fstream = new FileInputStream(
-                    "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\la10.txt");
+                    "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\"+instan);
             // Get the object of DataInputStream
 
             DataInputStream in = new DataInputStream(fstream);

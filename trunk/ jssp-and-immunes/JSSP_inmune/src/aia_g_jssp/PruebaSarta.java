@@ -5,10 +5,10 @@ public class PruebaSarta {
 	public static void main(String[] args) {
 
 		// Parametros algoritmo clonalg
-		double factor_clonac = 0.2;
-		double factor_mutacion = 4.5;
-		int poblacion = 150;
-		int rand_num = 8;
+		
+		double factor_clonac = 0.8;
+		int poblacion = 200;
+		int rand_num = 2;
 		int num_gen = 100;
 
 		// Lectura de la instancia
@@ -16,7 +16,8 @@ public class PruebaSarta {
 		int[][] instancia = inst.Leer_instancia();
 		int[] Tama = inst.Tamano_inst();
 		int lon_individuo = Tama[0] * Tama[1];
-
+		//double factor_mutacion = 1/Tama[0] * Tama[1];
+		double factor_mutacion =0.26;
 		// Variables del algoritmo
 		int[][] pob = new int[poblacion][lon_individuo]; // Almacena la
 															// poblacion
