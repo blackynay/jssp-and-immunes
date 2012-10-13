@@ -184,10 +184,10 @@ public class Clonalg extends Sarta {
 		for (int i = 0; i < M; i++) {
 			for (int j = 0; j < J; j++) {
 				if (j == J - 1) {
-					// System.out.print("  " + calen[i][j][1]);
-					// System.out.println();
+					 System.out.print("  " + calen[i][j][1]);
+					 System.out.println();
 				} else {
-					// System.out.print("  " + calen[i][j][1]);
+					 System.out.print("  " + calen[i][j][1]);
 				}
 			}
 		}
@@ -197,7 +197,9 @@ public class Clonalg extends Sarta {
 	public int Makespan(int calen[][][], int J, int M) {
 		int maximo = -9999999;
 		for (int i = 0; i < M; i++) {
-			maximo = Math.max(maximo, calen[i][J - 1][1]);
+			for(int j =0; j < J;j++){
+			maximo = Math.max(maximo, calen[i][j][1]);
+			}
 		}
 		// System.out.println(maximo);
 		return maximo;

@@ -7,9 +7,9 @@ public class PruebaSarta {
 		// Parametros algoritmo clonalg
 		
 		double factor_clonac = 0.8;
-		int poblacion = 200;
+		int poblacion = 300;
 		int rand_num = 2;
-		int num_gen = 100;
+		int num_gen = 400;
 
 		// Lectura de la instancia
 		Leer_archivo inst = new Leer_archivo();
