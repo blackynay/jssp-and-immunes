@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 public class Leer_archivo {
-	String instan="la01.txt";
+	String instan="la30.txt";
     public int[][] Leer_instancia() {
         
         try {
