@@ -1,19 +1,22 @@
 package aia_g_jssp;
 
+import java.io.FileInputStream;
+
 public class PruebaGrasp {
 
-	public static void main(String[] args) {
+	//public static void main(String[] args) {
+	public Integer ejecutar_Grasp(FileInputStream fstream){
 		// Parametros algoritmo clonalg
 		double alpha = 0.95;
 		int max_iter = 400;
 		int max_no_improv = 100;
 
-		for (int i1 = 0; i1 < 10; i1++) {
+		//for (int i1 = 0; i1 < 10; i1++) {
 			// Lectura de la instancia
 			Integer best = null;
 			Leer_archivo inst = new Leer_archivo();
-			int[][] instancia = inst.Leer_instancia();
-			int[] Tama = inst.Tamano_inst();
+			int[][] instancia = inst.Leer_instancia(fstream);
+			int[] Tama = inst.Tamano_inst(fstream);
 			Grasp grasp = new Grasp();
 			int[][][] calendario_mejor;
 			int costo;
@@ -49,11 +52,13 @@ public class PruebaGrasp {
 				// System.out.println(best);
 			}
 			System.out.println( best);
-			max_no_improv = max_no_improv + 200;
+			//max_no_improv = max_no_improv + 200;
 			/*
 			 * for (int j = 0; j < permutation_best.length; j++) {
 			 * System.out.print(permutation_best[j]); }
 			 */
+		//}
+	//}
+			return best;
 		}
-	}
 }
