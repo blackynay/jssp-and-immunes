@@ -1,27 +1,30 @@
 package aia_g_jssp;
 
+import java.io.*;
+
 //import metodos_excel.*;
 
 
 public class main {
 
-        /**
-         * @param args
-         */
-        public static void main(String argv[]) {
-        VistaDefinitiva vista =new VistaDefinitiva();
+	/**
+	 * @param args
+	 * @throws IOException 
+	 */
+	public static void main(String argv[]) throws IOException {
+      VistaDefinitiva vista =new VistaDefinitiva();
+       	
+//       	System.out.print("aqui estaaa! "+h);
       
-        //Clonalg alg=new Clonalg();
-        
-        
-       //int prueba [][]=vista.abrirArchivo();
-       //System.out.println(prueba.length);
-      //  vista.retornarMatriz(br)
-//        FuncionObjetivo objetivo =    new FuncionObjetivo ();
-//        objetivo.sumar(prueba);
+//     new Resultados();
+      
+//      FuncionObjetivo objetivo =	new FuncionObjetivo ();
+//      objetivo.sumar(prueba);
 
-        
-      }
+      
+      
+      
+    }
 
-        
+	
 }

@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="C:/archivos nelson/diagramas de gantt/jfreechart-1.0.14/lib/junit.jar"/>
 	<classpathentry kind="lib" path="C:/archivos nelson/diagramas de gantt/jfreechart-1.0.14/lib/servlet.jar"/>
 	<classpathentry kind="lib" path="C:/archivos nelson/diagramas de gantt/jfreechart-1.0.14/lib/swtgraphics2d.jar"/>
+	<classpathentry kind="lib" path="C:/archivos nelson/diagramas de gantt/PDFRenderer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
