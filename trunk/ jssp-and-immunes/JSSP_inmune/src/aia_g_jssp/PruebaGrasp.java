@@ -4,8 +4,8 @@ import java.io.FileInputStream;
 
 public class PruebaGrasp {
 
-	//public static void main(String[] args) {
-	public Integer ejecutar_Grasp(FileInputStream fstream){
+	public static void main(String[] args) {
+	//public Integer ejecutar_Grasp(){
 		// Parametros algoritmo clonalg
 		double alpha = 0.95;
 		int max_iter = 400;
@@ -15,8 +15,8 @@ public class PruebaGrasp {
 			// Lectura de la instancia
 			Integer best = null;
 			Leer_archivo inst = new Leer_archivo();
-			int[][] instancia = inst.Leer_instancia(fstream);
-			int[] Tama = inst.Tamano_inst(fstream);
+			int[][] instancia = inst.Leer_instancia();
+			int[] Tama = inst.Tamano_inst();
 			Grasp grasp = new Grasp();
 			int[][][] calendario_mejor;
 			int costo;
@@ -59,6 +59,6 @@ public class PruebaGrasp {
 			 */
 		//}
 	//}
-			return best;
+			//return best;
 		}
 }

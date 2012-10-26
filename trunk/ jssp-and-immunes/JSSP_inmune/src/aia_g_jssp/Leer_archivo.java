@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.StringTokenizer;
 
 public class Leer_archivo {
-	String instan="la30.txt";
-    public int[][] Leer_instancia(FileInputStream fstream ) {
+	String instan="la10.txt";
+    public int[][] Leer_instancia() {
         
         try {
             // Open the file that is the first
@@ -13,8 +13,8 @@ public class Leer_archivo {
             // FileInputStream fstream = new
             // FileInputStream("D:\\Datos\\Dropbox\\Implementación de un algoritmo inmune artificial aplicado en el  área  de planificación de recursos\\Software encontrado\\Instancias de Job shop scheduling\\la01.txt");
 
-        	//FileInputStream fstream = new FileInputStream(
-            //        "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\"+instan);
+        	FileInputStream fstream = new FileInputStream(
+                    "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\"+instan);
             // Get the object of DataInputStream
 
             DataInputStream in = new DataInputStream(fstream);
@@ -78,15 +78,15 @@ public class Leer_archivo {
         return null;
     }
 
-    public int[] Tamano_inst(FileInputStream fstream) {
+    public int[] Tamano_inst() {
 
         try {
             // Open the file that is the first
             // command line parameter
             // FileInputStream fstream = new
             // FileInputStream("D:\\Datos\\Dropbox\\Implementación de un algoritmo inmune artificial aplicado en el  área  de planificación de recursos\\Software encontrado\\Instancias de Job shop scheduling\\la01.txt");
-           // FileInputStream fstream = new FileInputStream(
-             //       "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\"+instan);
+           FileInputStream fstream = new FileInputStream(
+                    "C:\\Documents and Settings\\Invitado\\Mis documentos\\Instancia\\"+instan);
             // Get the object of DataInputStream
 
             DataInputStream in = new DataInputStream(fstream);
