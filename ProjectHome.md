@@ -1,0 +1,1 @@
+In the current proyect are going to be implemented two algorithms. One a version of CLONALG, the other is GRASP. Both are used to solve instances of LA for JSSP.
